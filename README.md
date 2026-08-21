@@ -49,11 +49,6 @@ Technical certifications and internship certificates with preview functionality.
 Contact form, email address, and social media links for professional communication.
 ---
 
-## Deployment
-The portfolio website is deployed using **GitHub Pages** and is accessible online at:
-https://maheknankani.github.io/Mehik_Kumari-Portfolio_Website/
----
-
 ## Author
 
 **Mehik Kumari**
