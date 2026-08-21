@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome | Mehik Kumari Portfolio</title>
+  <meta name="description" content="Welcome to Mehik Kumari's Personal Portfolio Website.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="welcome-screen-body">
+  <div class="welcome-fullscreen-container" id="welcome-container">
+    <div class="welcome-badges-row">
+      <div class="welcome-badge welcome-badge-orange" title="Code & Architecture"><i class="fas fa-code"></i></div>
+      <div class="welcome-badge" title="MERN Stack Developer"><i class="fas fa-user"></i></div>
+      <div class="welcome-badge" title="Web & UI/UX"><i class="fas fa-globe"></i></div>
+    </div>
+
+    <!-- Centered Heading -->
+    <h2 class="welcome-subtitle">Welcome to My</h2>
+    <h1 class="welcome-main-title">Portfolio Website</h1>
+
+    <!-- Dark URL Pill -->
+    <a href="index.html" class="welcome-url-pill" title="Click to open homepage immediately">
+      <span class="welcome-url-text">www.mehik-kumari.dev</span>
+    </a>
+
+    <!-- 5-Second Glowing Line -->
+    <div class="welcome-line-track">
+      <div class="welcome-line-fill"></div>
+    </div>
+
+    <!-- Timer countdown label -->
+    <div class="welcome-timer-label">Opening homepage in <span id="welcome-timer-sec">5</span>s...</div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const container = document.getElementById('welcome-container');
+      const timerSec = document.getElementById('welcome-timer-sec');
+      let remaining = 5;
+
+      const countdownInterval = setInterval(() => {
+        remaining--;
+        if (timerSec && remaining >= 0) {
+          timerSec.textContent = remaining;
+        }
+        if (remaining <= 0) {
+          clearInterval(countdownInterval);
+        }
+      }, 1000);
+
+      function goToHome() {
+        clearInterval(countdownInterval);
+        if (container) container.classList.add('welcome-fade-out');
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 600);
+      }
+
+      // Automatically open main homepage after 5 seconds
+      setTimeout(goToHome, 5000);
+
+      // Also allow clicking anywhere on screen to enter immediately
+      document.body.addEventListener('click', goToHome);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') {
+          goToHome();
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

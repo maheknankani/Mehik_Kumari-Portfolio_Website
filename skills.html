@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skills | Mahek Nankani</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --accent: #6c63ff;
+      --accent-light: #eeecff;
+      --bg: #f8f8ff;
+      --card-bg: #ffffff;
+      --text: #1a1a2e;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --bar-track: #e5e7eb;
+      --radius: 16px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      padding: 5rem 1.5rem;
+    }
+
+    /* Section heading — matches portfolio h2 style */
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .section-heading span {
+      color: var(--accent);
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 3rem;
+    }
+
+    /* 5 cards: 3 top row, 2 bottom centered */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .card:nth-child(4) {
+      grid-column: 1;
+    }
+
+    .card:nth-child(5) {
+      grid-column: 2;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.25s ease;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 36px rgba(108, 99, 255, 0.12);
+      border-color: rgba(108, 99, 255, 0.25);
+    }
+
+    /* Card header */
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--accent-light);
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    /* Progress bar rows */
+    .skill-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .skill-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .skill-name {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .skill-pct {
+      font-size: 0.73rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .bar-track {
+      height: 5px;
+      background: var(--bar-track);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #a78bfa);
+      border-radius: 99px;
+      width: 0%;
+      transition: width 0.95s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Pills */
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.32rem 0.8rem;
+      border-radius: 99px;
+      background: var(--accent-light);
+      color: var(--accent);
+      border: 1px solid rgba(108, 99, 255, 0.2);
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+
+    .pill:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card:nth-child(4),
+      .card:nth-child(5) {
+        grid-column: auto;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .card:nth-child(4) {
+        grid-column: auto;
+      }
+
+      .card:nth-child(5) {
+        grid-column: 1 / -1;
+        max-width: 50%;
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2 class="section-heading">My <span>Skills</span></h2>
+  <p class="section-sub">Technologies and tools I work with</p>
+
+  <div class="skills-grid">
+
+    <!-- Frontend -->
+    <div class="card" data-delay="0">
+      <div class="card-header">
+        <div class="card-icon"><i class="fas fa-code"></i></div>
+        <span class="card-title">Frontend</span>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label-row"><span class="skill-name">HTML</span><span class="skill-pct">95%</span></div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="95"></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label-row"><span class="skill-name">CSS</span><span class="skill-pct">92%</span></div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="92"></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label-row"><span class="skill-name">JavaScript</span><span class="skill-pct">90%</span></div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="90"></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label-row"><span class="skill-name">React</span><span class="skill-pct">90%</span></div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="90"></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label-row"><span class="skill-name">React Native</span><span class="skill-pct">60%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="60"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Backend & APIs -->
+    <div class="card" data-delay="100">
+      <div class="card-header">
+        <div class="card-icon"><i class="fas fa-server"></i></div>
+        <span class="card-title">Backend &amp; APIs</span>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label-row"><span class="skill-name">Node.js</span><span class="skill-pct">85%</span></div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="85"></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label-row"><span class="skill-name">Express.js</span><span class="skill-pct">85%</span></div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="85"></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label-row"><span class="skill-name">REST APIs</span><span class="skill-pct">85%</span></div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="85"></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label-row"><span class="skill-name">MongoDB</span><span class="skill-pct">80%</span></div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="80"></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label-row"><span class="skill-name">JWT auth</span><span class="skill-pct">80%</span></div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="80"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data & Tools -->
+    <div class="card" data-delay="200">
+      <div class="card-header">
+        <div class="card-icon"><i class="fas fa-tools"></i></div>
+        <span class="card-title">Data &amp; tools</span>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label-row"><span class="skill-name">Git / GitHub</span><span class="skill-pct">90%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="90"></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label-row"><span class="skill-name">Python</span><span class="skill-pct">70%</span></div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="70"></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label-row"><span class="skill-name">PostgreSQL</span><span class="skill-pct">55%</span></div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="55"></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label-row"><span class="skill-name">Power BI</span><span class="skill-pct">75%</span></div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="75"></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label-row"><span class="skill-name">Socket.io</span><span class="skill-pct">70%</span></div>
+        <div class="bar-track">
+          <div class="bar-fill" data-width="70"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design -->
+    <div class="card" data-delay="300">
+      <div class="card-header">
+        <div class="card-icon"><i class="fas fa-paint-brush"></i></div>
+        <span class="card-title">Design</span>
+      </div>
+      <div class="pills">
+        <span class="pill">Figma</span>
+        <span class="pill">Adobe Illustrator</span>
+        <span class="pill">UI design</span>
+        <span class="pill">App UI design</span>
+        <span class="pill">Logo design</span>
+        <span class="pill">Wireframing</span>
+        <span class="pill">Prototyping</span>
+        <span class="pill">UI/UX principles</span>
+        <span class="pill">Typography</span>
+        <span class="pill">Color theory</span>
+      </div>
+    </div>
+
+    <!-- Soft Skills -->
+    <div class="card" data-delay="400">
+      <div class="card-header">
+        <div class="card-icon"><i class="fas fa-users"></i></div>
+        <span class="card-title">Soft skills</span>
+      </div>
+      <div class="pills">
+        <span class="pill">Problem solving</span>
+        <span class="pill">Communication</span>
+        <span class="pill">Teamwork</span>
+        <span class="pill">Leadership</span>
+        <span class="pill">Adaptability</span>
+        <span class="pill">Attention to detail</span>
+        <span class="pill">Time management</span>
+        <span class="pill">Creativity</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const card = entry.target;
+        const delay = parseInt(card.dataset.delay) || 0;
+
+        setTimeout(() => {
+          card.classList.add('visible');
+          card.querySelectorAll('.bar-fill').forEach(bar => {
+            setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 150);
+          });
+        }, delay);
+
+        observer.unobserve(card);
+      });
+    }, { threshold: 0.15 });
+
+    cards.forEach(card => observer.observe(card));
+  </script>
+
+</body>
+
+</html>

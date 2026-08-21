@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Mahek Nankani – Software Developer & UI/UX Designer</title>
+  <meta name="description" content="Learn about Mahek Nankani – CS graduate from SZABIST Karachi, MERN Stack Developer and UI/UX Designer passionate about building intuitive digital experiences.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="animations.js" defer></script>
+</head>
+
+<body class="theme-dark">
+  <!-- Animated Homepage Cyber Wallpaper Layer -->
+  <div class="homepage-wallpaper-bg" aria-hidden="true"></div>
+
+  <!-- Full-screen Interactive Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Ambient Gradient Aurora Glowing Orbs -->
+  <div class="ambient-glow-wrapper" aria-hidden="true">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+    <div class="glow-orb orb-4"></div>
+  </div>
+
+  <header>
+    <div class="container">
+      <div class="logo"><span class="orange-code-badge"><i class="fas fa-code"></i></span> Mehik<span>.</span></div>
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="home.html#skills">Skills</a></li>
+          <li><a href="home.html#experience">Experience</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </nav>
+    </div>
+    <div class="nav-overlay"></div>
+  </header>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero fade-in">
+      <div class="container" style="flex-direction: column; text-align: center; padding: 5rem 2rem 2rem;">
+        <span class="page-hero-tag"><i class="fas fa-user"></i> About Me</span>
+        <h1 class="page-hero-title">Hi, I'm <span>Mahek Nankani</span></h1>
+        <p class="page-hero-desc">CS graduate from SZABIST Karachi passionate about building beautiful, functional digital experiences.</p>
+      </div>
+    </section>
+
+    <!-- About Content -->
+    <section id="about" class="fade-in" style="padding: 2rem 0 4rem;">
+      <div class="about-content" style="max-width:900px; margin:0 auto; padding: 0 2rem;">
+        <div class="about-bio-card fade-in">
+          <p class="about-bio-text">
+            I'm a <strong>Computer Science graduate</strong> from SZABIST Karachi with a passion for software development and user
+            experience design. Through internships and real-world projects, I've mastered building web
+            applications using the <strong>MERN Stack</strong>, while designing clean, intuitive interfaces that deliver delightful digital experiences.
+          </p>
+          
+          <!-- Quick Tech Stack Pills -->
+          <div class="about-tech-pills">
+            <span class="tech-pill"><i class="fab fa-react"></i> React.js</span>
+            <span class="tech-pill"><i class="fab fa-node-js"></i> Node.js</span>
+            <span class="tech-pill"><i class="fas fa-server"></i> Express.js</span>
+            <span class="tech-pill"><i class="fas fa-database"></i> MongoDB</span>
+            <span class="tech-pill"><i class="fab fa-figma"></i> Figma</span>
+            <span class="tech-pill"><i class="fab fa-js-square"></i> JavaScript</span>
+            <span class="tech-pill"><i class="fas fa-mobile-alt"></i> React Native</span>
+          </div>
+
+          <!-- About Action Buttons: Download CV -->
+          <div class="about-action-buttons">
+            <a href="Mehik_Kumari_Resume.pdf" class="btn-cv" download="Mahek_Nankani_Resume.pdf">
+              <i class="fas fa-file-download"></i> Download CV
+            </a>
+          </div>
+        </div>
+
+        <div class="about-highlights">
+          <div class="highlight-item slide-in-left stagger-1">
+            <div class="highlight-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <div class="highlight-content">
+              <h3>Front-End Development</h3>
+              <p>Specializing in building interactive, accessible, and high-performance interfaces using modern frontend technologies like React.js, React Native, JavaScript (ES6+), HTML5, and CSS3.</p>
+            </div>
+          </div>
+
+          <div class="highlight-item fade-in stagger-2">
+            <div class="highlight-icon">
+              <i class="fas fa-paint-brush"></i>
+            </div>
+            <div class="highlight-content">
+              <h3>UI/UX &amp; Visual Design</h3>
+              <p>Transforming complex user flows into intuitive, visually appealing interfaces. Proficient in Adobe Illustrator, Figma wireframing, component design systems, and responsive UX architecture.</p>
+            </div>
+          </div>
+
+          <div class="highlight-item slide-in-right stagger-3">
+            <div class="highlight-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <div class="highlight-content">
+              <h3>Innovation &amp; Growth</h3>
+              <p>Constantly challenging myself with new frameworks, performance optimization techniques, and clean architecture principles to bridge the gap between imagination and engineering.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-mission fade-in-delayed">
+          <blockquote>
+            <i class="fas fa-quote-left quote-watermark"></i>
+            <p>"My goal is to create digital experiences that not only look beautiful but also solve real problems and make technology more accessible to everyone."</p>
+            <cite>— Mahek Nankani</cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <div class="about-subsection fade-in" style="max-width:900px; margin:0 auto; padding: 0 2rem 3rem;">
+      <div class="section-header-wrapper">
+        <span class="section-tag"><i class="fas fa-graduation-cap"></i> Academic Background</span>
+        <h2>Education</h2>
+      </div>
+      <div class="education-timeline">
+
+        <div class="timeline-entry slide-in-left stagger-1">
+          <div class="timeline-icon"><i class="fas fa-university"></i></div>
+          <div class="timeline-content">
+            <div class="edu-card-header">
+              <h3>SZABIST University – Karachi</h3>
+              <span class="edu-degree">Bachelor of Science in Computer Science</span>
+            </div>
+            <div class="edu-meta-row">
+              <span class="edu-year-badge"><i class="fas fa-calendar-alt"></i> 2022 – 2026</span>
+              <span class="edu-grade-badge grade-highlight"><i class="fas fa-star"></i> CGPA: 3.43 / 4.0</span>
+            </div>
+            <ul class="edu-bullets">
+              <li><i class="fas fa-check-circle"></i> Focused on MERN Stack Development, Front-End Engineering, UI/UX Design &amp; HCI.</li>
+              <li><i class="fas fa-check-circle"></i> Developed scalable web applications &amp; competed in ZAB-E-FEST UI Competition.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-entry fade-in stagger-2">
+          <div class="timeline-icon"><i class="fas fa-school"></i></div>
+          <div class="timeline-content">
+            <div class="edu-card-header">
+              <h3>Sindh Public Higher Secondary School – Ghotki</h3>
+              <span class="edu-degree">Intermediate (Pre-Engineering)</span>
+            </div>
+            <div class="edu-meta-row">
+              <span class="edu-year-badge"><i class="fas fa-calendar-alt"></i> 2020 – 2022</span>
+              <span class="edu-grade-badge"><i class="fas fa-award"></i> Grade: 82% (A-1)</span>
+            </div>
+            <ul class="edu-bullets">
+              <li><i class="fas fa-check-circle"></i> Mathematics, Physics, &amp; Computer Science foundations.</li>
+              <li><i class="fas fa-check-circle"></i> Active participant in tech quizzes &amp; creative poster design competitions.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-entry slide-in-right stagger-3">
+          <div class="timeline-icon"><i class="fas fa-award"></i></div>
+          <div class="timeline-content">
+            <div class="edu-card-header">
+              <h3>Sindh Public Higher Secondary School – Ghotki</h3>
+              <span class="edu-degree">Matriculation (Science Group)</span>
+            </div>
+            <div class="edu-meta-row">
+              <span class="edu-year-badge"><i class="fas fa-calendar-alt"></i> 2018 – 2020</span>
+              <span class="edu-grade-badge"><i class="fas fa-certificate"></i> Grade: 78.8% (A)</span>
+            </div>
+            <ul class="edu-bullets">
+              <li><i class="fas fa-check-circle"></i> Computer Science &amp; analytical logic fundamentals.</li>
+              <li><i class="fas fa-check-circle"></i> Recognized for academic performance &amp; creative arts programs.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Work Experience Section -->
+    <div class="about-subsection slide-in-bottom" style="max-width:900px; margin:0 auto; padding: 0 2rem 3rem;">
+      <div class="section-header-wrapper">
+        <span class="section-tag"><i class="fas fa-briefcase"></i> Career Highlights</span>
+        <h2>Work Experience</h2>
+      </div>
+      <div class="work-experience-timeline">
+
+        <article class="work-experience-entry slide-in-left stagger-1">
+          <div class="work-experience-icon"><i class="fas fa-briefcase"></i></div>
+          <div class="work-experience-content">
+            <div class="work-experience-header">
+              <div>
+                <h3>MERN Stack Intern</h3>
+                <p class="work-experience-company"><i class="fas fa-building"></i> 10Pearls</p>
+              </div>
+              <div class="work-experience-meta">
+                <span class="work-experience-type">Virtual Internship</span>
+                <span class="work-experience-duration"><i class="fas fa-calendar-alt"></i> 2025</span>
+                <button type="button" class="work-exp-cert-icon cert-open" data-image="certificates/10Pearls Certificate.jpeg" data-title="10Pearls MERN Stack Internship Certificate" title="View Internship Certificate" aria-label="View Internship Certificate">
+                  <i class="fas fa-arrow-up-right-from-square"></i>
+                </button>
+              </div>
+            </div>
+            <ul class="work-experience-bullets">
+              <li><i class="fas fa-check-circle"></i> Developed full-stack web applications using MongoDB, Express.js, React.js, and Node.js.</li>
+              <li><i class="fas fa-check-circle"></i> Built reusable UI components and integrated RESTful APIs with team collaboration on GitHub.</li>
+            </ul>
+            <div class="work-exp-tech-pills">
+              <span class="exp-pill">MongoDB</span>
+              <span class="exp-pill">Express.js</span>
+              <span class="exp-pill">React.js</span>
+              <span class="exp-pill">Node.js</span>
+              <span class="exp-pill">REST APIs</span>
+              <span class="exp-pill">Git &amp; GitHub</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-experience-entry fade-in stagger-2">
+          <div class="work-experience-icon"><i class="fas fa-code"></i></div>
+          <div class="work-experience-content">
+            <div class="work-experience-header">
+              <div>
+                <h3>Frontend Development Intern</h3>
+                <p class="work-experience-company"><i class="fas fa-building"></i> CodeAlpha</p>
+              </div>
+              <div class="work-experience-meta">
+                <span class="work-experience-type">Virtual Internship</span>
+                <span class="work-experience-duration"><i class="fas fa-calendar-alt"></i> July 2025 – Aug 2025</span>
+                <button type="button" class="work-exp-cert-icon cert-open" data-image="certificates/codealpha interenship certificate.jpg" data-title="CodeAlpha Frontend Development Internship Certificate" title="View Internship Certificate" aria-label="View Internship Certificate">
+                  <i class="fas fa-arrow-up-right-from-square"></i>
+                </button>
+              </div>
+            </div>
+            <ul class="work-experience-bullets">
+              <li><i class="fas fa-check-circle"></i> Built responsive, pixel-perfect web pages using modern HTML5, CSS3, and JavaScript.</li>
+              <li><i class="fas fa-check-circle"></i> Implemented interactive UI animations, smooth navigation, and cross-browser debugging.</li>
+            </ul>
+            <div class="work-exp-tech-pills">
+              <span class="exp-pill">HTML5</span>
+              <span class="exp-pill">CSS3</span>
+              <span class="exp-pill">JavaScript</span>
+              <span class="exp-pill">UI Animations</span>
+              <span class="exp-pill">Responsive Design</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-experience-entry slide-in-right stagger-3">
+          <div class="work-experience-icon"><i class="fas fa-laptop-code"></i></div>
+          <div class="work-experience-content">
+            <div class="work-experience-header">
+              <div>
+                <h3>Frontend Development Intern</h3>
+                <p class="work-experience-company"><i class="fas fa-building"></i> Elevvo Pathway</p>
+              </div>
+              <div class="work-experience-meta">
+                <span class="work-experience-type">Virtual Internship</span>
+                <span class="work-experience-duration"><i class="fas fa-calendar-alt"></i> 2025</span>
+                <button type="button" class="work-exp-cert-icon cert-open" data-image="certificates/Mehik Nankani elevo_pathway certificate.jpg" data-title="Elevvo Pathway Frontend Development Internship Certificate" title="View Internship Certificate" aria-label="View Internship Certificate">
+                  <i class="fas fa-arrow-up-right-from-square"></i>
+                </button>
+              </div>
+            </div>
+            <ul class="work-experience-bullets">
+              <li><i class="fas fa-check-circle"></i> Designed and developed responsive frontend web applications with clean code architecture.</li>
+              <li><i class="fas fa-check-circle"></i> Optimized website performance, accessibility, and mobile layout compatibility.</li>
+            </ul>
+            <div class="work-exp-tech-pills">
+              <span class="exp-pill">Frontend Dev</span>
+              <span class="exp-pill">JavaScript</span>
+              <span class="exp-pill">CSS Flexbox/Grid</span>
+              <span class="exp-pill">UI/UX Layouts</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Certifications Section -->
+    <div class="about-subsection fade-in" style="max-width:900px; margin:0 auto; padding: 0 2rem 5rem;">
+      <h2>Certifications</h2>
+      <p class="cert-sub">Recognized credentials, bootcamp completions, and official tech awards</p>
+      <div class="certificates-list">
+
+        <div class="certificate-card fade-in cert-open" data-image="images/AIESEC – The Billion Rupee Code.jpeg" data-title="AIESEC – The Billion Rupee Code">
+          <div class="cert-card-header">
+            <div class="cert-icon-badge aiesec-badge"><i class="fas fa-rocket"></i></div>
+            <span class="cert-type-tag">Hackathon &amp; Tech</span>
+          </div>
+          <div class="cert-card-body">
+            <h3>The Billion Rupee Code</h3>
+            <p class="cert-issuer"><i class="fas fa-building"></i> AIESEC</p>
+          </div>
+          <div class="cert-card-footer">
+            <span class="cert-cta-btn"><i class="fas fa-eye"></i> View Certificate ↗</span>
+          </div>
+        </div>
+
+        <div class="certificate-card fade-in-delayed cert-open" data-image="images\UI Development Certificate.png" data-title="UI Development Participant – ZAB-E-FEST'25">
+          <div class="cert-card-header">
+            <div class="cert-icon-badge szabist-badge"><i class="fas fa-trophy"></i></div>
+            <span class="cert-type-tag">UI Competition</span>
+          </div>
+          <div class="cert-card-body">
+            <h3>UI Development Participant</h3>
+            <p class="cert-issuer"><i class="fas fa-university"></i> ZAB-E-FEST '25</p>
+          </div>
+          <div class="cert-card-footer">
+            <span class="cert-cta-btn"><i class="fas fa-eye"></i> View Certificate ↗</span>
+          </div>
+        </div>
+
+        <div class="certificate-card slide-in-left cert-open" data-image="images/5-Day Fundamentals of Programming Bootcamp – GDSC Certificate.jpg" data-title="5-Day Fundamentals of Programming Bootcamp – GDSC">
+          <div class="cert-card-header">
+            <div class="cert-icon-badge gdsc-badge"><i class="fas fa-code"></i></div>
+            <span class="cert-type-tag">Bootcamp</span>
+          </div>
+          <div class="cert-card-body">
+            <h3>Programming Bootcamp</h3>
+            <p class="cert-issuer"><i class="fab fa-google"></i> Google Developer Student Clubs</p>
+          </div>
+          <div class="cert-card-footer">
+            <span class="cert-cta-btn"><i class="fas fa-eye"></i> View Certificate ↗</span>
+          </div>
+        </div>
+
+        <div class="certificate-card slide-in-left cert-open" data-image="images/Github Copilot Certificate.png" data-title="GitHub Copilot Course Completion – GITHUB">
+          <div class="cert-card-header">
+            <div class="cert-icon-badge github-badge"><i class="fab fa-github"></i></div>
+            <span class="cert-type-tag">AI Development</span>
+          </div>
+          <div class="cert-card-body">
+            <h3>GitHub Copilot Certified</h3>
+            <p class="cert-issuer"><i class="fab fa-github"></i> GitHub</p>
+          </div>
+          <div class="cert-card-footer">
+            <span class="cert-cta-btn"><i class="fas fa-eye"></i> View Certificate ↗</span>
+          </div>
+        </div>
+
+        <div class="certificate-card fade-in cert-open" data-image="images/AWS_Academy_Graduate Certificate.pdf" data-title="AWS Academy Graduate – Cloud Foundations">
+          <div class="cert-card-header">
+            <div class="cert-icon-badge aws-badge"><i class="fab fa-aws"></i></div>
+            <span class="cert-type-tag">Cloud Computing</span>
+          </div>
+          <div class="cert-card-body">
+            <h3>AWS Cloud Foundations</h3>
+            <p class="cert-issuer"><i class="fas fa-cloud"></i> AWS Academy</p>
+          </div>
+          <div class="cert-card-footer">
+            <span class="cert-cta-btn"><i class="fas fa-file-pdf"></i> View PDF Certificate ↗</span>
+          </div>
+        </div>
+
+        <div class="certificate-card fade-in-delayed cert-open" data-image="images/Red_Hat certificate.pdf" data-title="Red Hat Linux System Administration">
+          <div class="cert-card-header">
+            <div class="cert-icon-badge redhat-badge"><i class="fab fa-redhat"></i></div>
+            <span class="cert-type-tag">System Admin</span>
+          </div>
+          <div class="cert-card-body">
+            <h3>Red Hat Linux Admin</h3>
+            <p class="cert-issuer"><i class="fas fa-server"></i> Red Hat Academy</p>
+          </div>
+          <div class="cert-card-footer">
+            <span class="cert-cta-btn"><i class="fas fa-file-pdf"></i> View PDF Certificate ↗</span>
+          </div>
+        </div>
+
+        <div class="certificate-card fade-in-delayed cert-open" data-image="images/Training Workshop on Cybersecurity in the Era of Digitalization Certificate.jpeg" data-title="Training Workshop on Cybersecurity in the Era of Digitalization">
+          <div class="cert-card-header">
+            <div class="cert-icon-badge cyber-badge"><i class="fas fa-shield-alt"></i></div>
+            <span class="cert-type-tag">Cybersecurity</span>
+          </div>
+          <div class="cert-card-body">
+            <h3>Cybersecurity Workshop</h3>
+            <p class="cert-issuer"><i class="fas fa-lock"></i> Technical Workshop</p>
+          </div>
+          <div class="cert-card-footer">
+            <span class="cert-cta-btn"><i class="fas fa-eye"></i> View Certificate ↗</span>
+          </div>
+        </div>
+
+        <div class="certificate-card fade-in cert-open" data-image="certificates/10Pearls Certificate.jpeg" data-title="10Pearls MERN Stack Internship Certificate">
+          <div class="cert-card-header">
+            <div class="cert-icon-badge pearls-badge"><i class="fas fa-laptop-code"></i></div>
+            <span class="cert-type-tag">Full-Stack Internship</span>
+          </div>
+          <div class="cert-card-body">
+            <h3>MERN Stack Internship</h3>
+            <p class="cert-issuer"><i class="fas fa-briefcase"></i> 10Pearls</p>
+          </div>
+          <div class="cert-card-footer">
+            <span class="cert-cta-btn"><i class="fas fa-eye"></i> View Certificate ↗</span>
+          </div>
+        </div>
+
+        <div class="certificate-card fade-in cert-open" data-image="certificates/codealpha interenship certificate.jpg" data-title="CodeAlpha Frontend Development Internship Certificate">
+          <div class="cert-card-header">
+            <div class="cert-icon-badge pearls-badge"><i class="fas fa-laptop-code"></i></div>
+            <span class="cert-type-tag">Frontend Development Internship</span>
+          </div>
+          <div class="cert-card-body">
+            <h3>Frontend Development Internship</h3>
+            <p class="cert-issuer"><i class="fas fa-briefcase"></i> CodeAlpha</p>
+          </div>
+          <div class="cert-card-footer">
+            <span class="cert-cta-btn"><i class="fas fa-eye"></i> View Certificate ↗</span>
+          </div>
+        </div>
+
+        <div class="certificate-card fade-in cert-open" data-image="certificates/Mehik Nankani elevo_pathway certificate.jpg" data-title="Elevvo Pathway Frontend Development Internship Certificate">
+          <div class="cert-card-header">
+            <div class="cert-icon-badge pearls-badge"><i class="fas fa-laptop-code"></i></div>
+            <span class="cert-type-tag">Frontend Internship</span>
+          </div>
+          <div class="cert-card-body">
+            <h3>Frontend Development Internship</h3>
+            <p class="cert-issuer"><i class="fas fa-briefcase"></i> Elevvo Pathway</p>
+          </div>
+          <div class="cert-card-footer">
+            <span class="cert-cta-btn"><i class="fas fa-eye"></i> View Certificate ↗</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Certificate Modal -->
+  <div id="cert-modal" class="cert-modal" aria-hidden="true">
+    <div class="cert-modal-backdrop" data-close="true"></div>
+    <div class="cert-modal-panel" role="dialog" aria-modal="true" aria-labelledby="cert-title">
+      <button class="cert-modal-close" aria-label="Close certificate">&times;</button>
+      <div class="cert-modal-body">
+        <div id="cert-modal-media-wrapper" class="cert-modal-media-wrapper">
+          <img id="cert-modal-img" src="" alt="Certificate image">
+          <iframe id="cert-modal-iframe" src="" style="display:none;" title="Certificate PDF Viewer"></iframe>
+        </div>
+        <div class="cert-modal-meta">
+          <h3 id="cert-title" class="cert-modal-title"></h3>
+          <a id="cert-modal-pdf-btn" href="" target="_blank" class="btn-outline btn-small" style="display:none;">
+            <i class="fas fa-external-link-alt"></i> Open Full Document
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div>&copy; 2025 Mehik Kumari (Mahek Nankani)</div>
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/mahek-nankani" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/maheknankani" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script>
+    (function(){
+      const modal = document.getElementById('cert-modal');
+      const modalImg = document.getElementById('cert-modal-img');
+      const modalIframe = document.getElementById('cert-modal-iframe');
+      const modalPdfBtn = document.getElementById('cert-modal-pdf-btn');
+      const modalTitle = document.getElementById('cert-title');
+      const closeBtn = document.querySelector('.cert-modal-close');
+
+      function openModal(src, title){
+        const isPdf = src.toLowerCase().endsWith('.pdf');
+        if (isPdf) {
+          modalImg.style.display = 'none';
+          modalIframe.style.display = 'block';
+          modalIframe.src = src;
+          if (modalPdfBtn) { modalPdfBtn.href = src; modalPdfBtn.style.display = 'inline-flex'; }
+        } else {
+          modalIframe.style.display = 'none';
+          modalIframe.src = '';
+          modalImg.style.display = 'block';
+          modalImg.src = src;
+          modalImg.alt = title;
+          if (modalPdfBtn) modalPdfBtn.style.display = 'none';
+        }
+        modalTitle.textContent = title;
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        setTimeout(()=> closeBtn.focus(), 120);
+      }
+
+      function closeModal(){
+        modal.setAttribute('aria-hidden', 'true');
+        modalImg.src = '';
+        modalIframe.src = '';
+        modalTitle.textContent = '';
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.cert-open').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.preventDefault();
+          const img = btn.getAttribute('data-image');
+          const title = btn.getAttribute('data-title') || btn.querySelector('h3')?.textContent?.trim() || btn.textContent.trim();
+          openModal(img, title);
+        });
+      });
+
+      closeBtn.addEventListener('click', closeModal);
+      document.querySelectorAll('.cert-modal-backdrop').forEach(b => b.addEventListener('click', closeModal));
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeModal();
+      });
+      document.querySelectorAll('.cert-modal-panel').forEach(panel => panel.addEventListener('click', e => e.stopPropagation()));
+      document.addEventListener('focus', function(event){
+        if(modal.getAttribute('aria-hidden') === 'false' && !modal.contains(event.target)){
+          event.stopPropagation();
+          closeBtn.focus();
+        }
+      }, true);
+    })();
+  </script>
+
+</body>
+
+</html>

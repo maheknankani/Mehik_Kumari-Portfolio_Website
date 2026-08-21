@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mehik Kumari | MERN Stack Developer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <script src="https://kit.fontawesome.com/4b8b1b1e7b.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="animations.js" defer></script>
+</head>
+
+<body class="theme-dark">
+
+  <!-- Full-Screen 5-Second Intro Screen Overlay with Animated Cyber Wallpaper & Glowing Gradient Blobs -->
+  <style>
+    @keyframes wallpaperKenBurns {
+      0% { transform: scale(1) translate(0, 0); }
+      50% { transform: scale(1.08) translate(-12px, -10px); }
+      100% { transform: scale(1.03) translate(10px, 8px); }
+    }
+    @keyframes blobPulseBlue {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+      50% { transform: translate(50px, 30px) scale(1.15); opacity: 0.92; }
+    }
+    @keyframes blobPulsePurple {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+      50% { transform: translate(-45px, -35px) scale(1.12); opacity: 0.85; }
+    }
+    @keyframes blobPulseIndigo {
+      0%, 100% { transform: translate(0, 0) scale(0.95); opacity: 0.5; }
+      50% { transform: translate(35px, -25px) scale(1.18); opacity: 0.75; }
+    }
+    @keyframes introFadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes introScaleUp {
+      from { opacity: 0; transform: scale(0.93) translateY(12px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @keyframes introLinePulse {
+      0%, 100% { width: 75px; opacity: 0.6; }
+      50% { width: 145px; opacity: 1; }
+    }
+  </style>
+
+  <div id="intro-screen-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #050811; z-index: 9999999; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; opacity: 1; visibility: visible; transition: opacity 0.8s ease, visibility 0.8s ease; overflow: hidden;">
+    
+    <!-- Animated Cyber Tech Wallpaper Background -->
+    <div style="position: absolute; top: -5%; left: -5%; width: 110%; height: 110%; background-image: url('images/intro_wallpaper.jpg'); background-size: cover; background-position: center; opacity: 0.35; mix-blend-mode: color-dodge; animation: wallpaperKenBurns 16s ease-in-out infinite alternate; pointer-events: none;"></div>
+
+    <!-- Soft Glowing Blue Gradient Blob -->
+    <div style="position: absolute; width: 620px; height: 620px; border-radius: 50%; background: radial-gradient(circle, rgba(59, 130, 246, 0.35) 0%, rgba(37, 99, 235, 0.12) 55%, transparent 70%); filter: blur(85px); top: 8%; left: 12%; animation: blobPulseBlue 10s ease-in-out infinite; pointer-events: none;"></div>
+
+    <!-- Soft Glowing Purple Gradient Blob -->
+    <div style="position: absolute; width: 580px; height: 580px; border-radius: 50%; background: radial-gradient(circle, rgba(147, 51, 234, 0.3) 0%, rgba(126, 34, 206, 0.1) 55%, transparent 70%); filter: blur(85px); bottom: 8%; right: 12%; animation: blobPulsePurple 12s ease-in-out infinite; pointer-events: none;"></div>
+
+    <!-- Soft Ambient Indigo Glow Center Blob -->
+    <div style="position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(99, 102, 241, 0.22) 0%, transparent 70%); filter: blur(90px); top: 30%; left: 35%; animation: blobPulseIndigo 14s ease-in-out infinite; pointer-events: none;"></div>
+
+    <!-- Centered Clearly Readable Text Content -->
+    <div style="position: relative; z-index: 20; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; max-width: 850px; padding: 2rem;">
+      <span style="font-size: clamp(1.15rem, 2.8vw, 1.75rem); font-weight: 600; color: #94a3b8; letter-spacing: 0.05em; margin-bottom: 0.6rem; animation: introFadeDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;">
+        Welcome to My
+      </span>
+      <h1 style="font-size: clamp(2.5rem, 6.5vw, 4.3rem); font-weight: 800; background: linear-gradient(135deg, #ffffff 30%, #60a5fa 70%, #c084fc 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.03em; margin: 0; line-height: 1.15; filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.6)); animation: introScaleUp 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;">
+        Portfolio Website
+      </h1>
+      <div style="height: 3px; background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899); border-radius: 3px; margin-top: 1.8rem; box-shadow: 0 0 16px #8b5cf6; animation: introLinePulse 2.5s ease-in-out infinite;"></div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const intro = document.getElementById('intro-screen-overlay');
+      if (intro) {
+        document.body.style.overflow = 'hidden';
+        setTimeout(function() {
+          intro.style.opacity = '0';
+          intro.style.visibility = 'hidden';
+          document.body.style.overflow = '';
+          setTimeout(function() {
+            if (intro && intro.parentNode) {
+              intro.parentNode.removeChild(intro);
+            }
+          }, 800);
+        }, 5000);
+      }
+    })();
+  </script>
+
+  <!-- Animated Homepage Cyber Wallpaper Layer -->
+  <div class="homepage-wallpaper-bg" aria-hidden="true"></div>
+
+  <!-- Full-screen Interactive Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+  
+  <!-- Ambient Gradient Aurora Glowing Orbs -->
+  <div class="ambient-glow-wrapper" aria-hidden="true">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+    <div class="glow-orb orb-4"></div>
+  </div>
+
+  <header>
+    <div class="container">
+      <div class="logo"><span class="orange-code-badge"><i class="fas fa-code"></i></span> Mehik<span>.</span></div>
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </nav>
+    </div>
+    <div class="nav-overlay"></div>
+  </header>
+
+
+  <nav class="sidebar-nav">
+    <ul>
+      <li><a href="#home" data-section="Home"></a></li>
+      <li><a href="#about" data-section="About"></a></li>
+      <li><a href="#skills" data-section="Skills"></a></li>
+      <li><a href="#experience" data-section="Experience"></a></li>
+      <li><a href="#projects" data-section="Projects"></a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="floating-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+      </div>
+      <div class="container">
+        <div class="hero-content">
+
+          <!-- LEFT: Text Content -->
+          <div class="hero-text fade-in">
+
+            <!-- "Hello, I'm" greeting tag -->
+            <div class="hero-greeting-tag">
+              <span class="greeting-wave">👋</span> HELLO, I'M
+            </div>
+
+            <h1><span id="hero-name-animated" class="hero-name-glow">Mehik Kumari</span></h1>
+
+            <!-- Role with colored dash -->
+            <div class="hero-role slide-in-left">
+              <span class="hero-role-dash">—</span>
+              <span class="hero-role-text">MERN STACK DEVELOPER &amp; UI/UX DESIGNER</span>
+            </div>
+
+            <!-- Specialization typewriter line -->
+            <p class="hero-specialization fade-in-delayed">
+              Specializing in <span id="hero-typewriter" class="hero-specialization-anim">MERN Stack</span>
+            </p>
+
+            <p class="hero-desc fade-in-delayed">
+              Computer Science graduate passionate about building responsive, user-friendly web applications using
+              modern technologies. Based in <strong>Karachi, Pakistan 🇵🇰</strong>
+            </p>
+
+            <div class="hero-buttons">
+              <a href="#projects" class="btn-filled hero-btn-main">
+                View My Work <i class="fas fa-arrow-right"></i>
+              </a>
+              <a href="#contact" class="hero-btn-talk">
+                <i class="fas fa-paper-plane"></i> Let's Talk
+              </a>
+            </div>
+
+
+            <!-- Stats Bar -->
+            <div class="hero-stats fade-in-delayed">
+              <div class="hero-stat-item">
+                <span class="hero-stat-number">9+</span>
+                <span class="hero-stat-label">Projects</span>
+              </div>
+              <div class="hero-stat-divider"></div>
+              <div class="hero-stat-item">
+                <span class="hero-stat-number">3</span>
+                <span class="hero-stat-label">Internships</span>
+              </div>
+              <div class="hero-stat-divider"></div>
+              <div class="hero-stat-item">
+                <span class="hero-stat-number">3.43</span>
+                <span class="hero-stat-label">CGPA</span>
+              </div>
+            </div>
+
+
+          </div>
+
+          <!-- RIGHT: Visual with floating badges -->
+          <div class="hero-visual fade-in-right">
+
+            <!-- Floating status badges -->
+            <div class="hero-badge hero-badge-top">
+              <span class="badge-dot badge-dot-green"></span>
+              Open to Work
+            </div>
+
+            <div class="hero-badge hero-badge-left">
+              <i class="fas fa-map-marker-alt badge-icon-loc"></i>
+              Karachi, PK
+            </div>
+
+            <div class="hero-badge hero-badge-bottom">
+              <i class="fab fa-node-js badge-icon-mern"></i>
+              MERN Stack
+            </div>
+
+            <!-- Orbit rings -->
+            <div class="hero-orbit"></div>
+            <div class="hero-orbit hero-orbit-secondary"></div>
+
+            <!-- Profile image -->
+            <img src="images/meee.jpg" alt="Mehik Kumari portrait" class="profile-img">
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="fade-in">
+      <div class="section-header-wrapper">
+        <span class="section-tag"><i class="fas fa-user-astronaut"></i> Biography</span>
+        <h2>About Me</h2>
+      </div>
+      <div class="about-content">
+        <div class="about-bio-card fade-in">
+          <p class="about-bio-text">
+            I'm a <strong>Computer Science graduate</strong> from SZABIST Karachi with a passion for software development and user
+            experience design. Through internships and real-world projects, I've mastered building web
+            applications using the <strong>MERN Stack</strong>, while designing clean, intuitive interfaces that deliver delightful digital experiences.
+          </p>
+          
+          <!-- Quick Tech Stack Pills -->
+          <div class="about-tech-pills">
+            <span class="tech-pill"><i class="fab fa-react"></i> React.js</span>
+            <span class="tech-pill"><i class="fab fa-node-js"></i> Node.js</span>
+            <span class="tech-pill"><i class="fas fa-server"></i> Express.js</span>
+            <span class="tech-pill"><i class="fas fa-database"></i> MongoDB</span>
+            <!-- <span class="tech-pill"><i class="fab fa-figma"></i> Figma</span> -->
+            <span class="tech-pill"><i class="fab fa-js-square"></i> JavaScript</span>
+            <span class="tech-pill"><i class="fas fa-mobile-alt"></i> React Native</span>
+          </div>
+
+          <!-- About Action Buttons: Download CV & Learn More -->
+          <div class="about-action-buttons">
+            <a href="Mehik_Kumari_Resume_SoftwareDev.pdf" class="btn-cv" download="Mehik_Kumari_Resume_SoftwareDev.pdf">
+              <i class="fas fa-file-download"></i> Download CV
+            </a>
+            <a href="#projects" class="btn-outline-about">
+              <i class="fas fa-layer-group"></i> Explore Projects
+            </a>
+          </div>
+        </div>
+
+        <div class="about-highlights">
+          <div class="highlight-item slide-in-left stagger-1">
+            <div class="highlight-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <div class="highlight-content">
+              <h3>Front-End Development</h3>
+              <p>Specializing in building interactive, accessible, and high-performance interfaces using modern frontend technologies like React.js, React Native, JavaScript (ES6+), HTML5, and CSS3.</p>
+            </div>
+          </div>
+
+          <div class="highlight-item fade-in stagger-2">
+            <div class="highlight-icon">
+              <i class="fas fa-paint-brush"></i>
+            </div>
+            <div class="highlight-content">
+              <h3>UI/UX &amp; Visual Design</h3>
+              <p>Transforming complex user flows into intuitive, visually appealing interfaces. Proficient in Adobe Illustrator, Figma wireframing, component design systems, and responsive UX architecture.</p>
+            </div>
+          </div>
+
+          <div class="highlight-item slide-in-right stagger-3">
+            <div class="highlight-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <div class="highlight-content">
+              <h3>Innovation &amp; Growth</h3>
+              <p>Constantly challenging myself with new frameworks, performance optimization techniques, and clean architecture principles to bridge the gap between imagination and engineering.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-mission fade-in-delayed">
+          <blockquote>
+            <i class="fas fa-quote-left quote-watermark"></i>
+            <p>"My goal is to create digital experiences that not only look beautiful but also solve real problems and make technology more accessible to everyone."</p>
+            <cite>— Mehik Kumari</cite>
+          </blockquote>
+        </div>
+      </div>
+
+       <div class="about-subsection fade-in">
+        <div class="section-header-wrapper">
+          <span class="section-tag"><i class="fas fa-graduation-cap"></i> Academic Background</span>
+          <h2>Education</h2>
+        </div>
+        <div class="education-timeline">
+
+          <div class="timeline-entry slide-in-left stagger-1">
+            <div class="timeline-icon"><i class="fas fa-university"></i></div>
+            <div class="timeline-content">
+              <div class="edu-card-header">
+                <h3>SZABIST University – Karachi</h3>
+                <span class="edu-degree">Bachelor of Science in Computer Science</span>
+              </div>
+              <div class="edu-meta-row">
+                <span class="edu-year-badge"><i class="fas fa-calendar-alt"></i> 2022 – 2026</span>
+                <span class="edu-grade-badge grade-highlight"><i class="fas fa-star"></i> CGPA: 3.43 / 4.0</span>
+              </div>
+              <ul class="edu-bullets">
+                <li><i class="fas fa-check-circle"></i> Focused on MERN Stack Development, Front-End Engineering, UI/UX Design &amp; HCI.</li>
+                <li><i class="fas fa-check-circle"></i> Developed scalable web applications &amp; competed in ZAB-E-FEST UI Competition.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-entry fade-in stagger-2">
+            <div class="timeline-icon"><i class="fas fa-school"></i></div>
+            <div class="timeline-content">
+              <div class="edu-card-header">
+                <h3>Sindh Public Higher Secondary School – Ghotki</h3>
+                <span class="edu-degree">Intermediate (Pre-Engineering)</span>
+              </div>
+              <div class="edu-meta-row">
+                <span class="edu-year-badge"><i class="fas fa-calendar-alt"></i> 2020 – 2022</span>
+                <span class="edu-grade-badge"><i class="fas fa-award"></i> Grade: 82% (A-1)</span>
+              </div>
+              <ul class="edu-bullets">
+                <li><i class="fas fa-check-circle"></i> Mathematics, Physics, &amp; Computer Science foundations.</li>
+                <li><i class="fas fa-check-circle"></i> Active participant in tech quizzes &amp; creative poster design competitions.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-entry slide-in-right stagger-3">
+            <div class="timeline-icon"><i class="fas fa-award"></i></div>
+            <div class="timeline-content">
+              <div class="edu-card-header">
+                <h3>Sindh Public Higher Secondary School – Ghotki</h3>
+                <span class="edu-degree">Matriculation (Science Group)</span>
+              </div>
+              <div class="edu-meta-row">
+                <span class="edu-year-badge"><i class="fas fa-calendar-alt"></i> 2018 – 2020</span>
+                <span class="edu-grade-badge"><i class="fas fa-certificate"></i> Grade: 78.8% (A)</span>
+              </div>
+              <ul class="edu-bullets">
+                <li><i class="fas fa-check-circle"></i> Computer Science &amp; analytical logic fundamentals.</li>
+                <li><i class="fas fa-check-circle"></i> Recognized for academic performance &amp; creative arts programs.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Certifications Section -->
+      <div class="about-subsection slide-in-bottom" style="margin-top: 3rem;">
+        <div class="section-header-wrapper">
+          <span class="section-tag"><i class="fas fa-award"></i> Verified Credentials</span>
+          <h2>Certifications</h2>
+        </div>
+        <p class="cert-sub">Recognized credentials, bootcamp completions, and official tech awards</p>
+        <div class="certificates-list">
+
+          <div class="certificate-card fade-in cert-open" data-image="certificates/AIESEC – The Billion Rupee Code.jpeg" data-title="AIESEC – The Billion Rupee Code">
+            <div class="cert-card-header">
+              <div class="cert-icon-badge aiesec-badge">
+                <i class="fas fa-rocket"></i>
+              </div>
+              <span class="cert-type-tag">Hackathon &amp; Tech</span>
+            </div>
+            <div class="cert-card-body">
+              <h3>The Billion Rupee Code</h3>
+              <p class="cert-issuer"><i class="fas fa-building"></i> AIESEC</p>
+            </div>
+            <div class="cert-card-footer">
+              <span class="cert-cta-btn"><i class="fas fa-eye"></i> View Certificate ↗</span>
+            </div>
+          </div>
+
+          <div class="certificate-card fade-in-delayed cert-open" data-image="certificates\UI Development Certificate.png" data-title="UI Development Participant – ZAB-E-FEST'25">
+            <div class="cert-card-header">
+              <div class="cert-icon-badge szabist-badge">
+                <i class="fas fa-trophy"></i>
+              </div>
+              <span class="cert-type-tag">UI Competition</span>
+            </div>
+            <div class="cert-card-body">
+              <h3>UI Development Participant</h3>
+              <p class="cert-issuer"><i class="fas fa-university"></i> ZAB-E-FEST '25</p>
+            </div>
+            <div class="cert-card-footer">
+              <span class="cert-cta-btn"><i class="fas fa-eye"></i> View Certificate ↗</span>
+            </div>
+          </div>
+
+          <div class="certificate-card slide-in-left cert-open" data-image="certificates/5-Day Fundamentals of Programming Bootcamp – GDSC Certificate.jpg" data-title="5-Day Fundamentals of Programming Bootcamp – GDSC">
+            <div class="cert-card-header">
+              <div class="cert-icon-badge gdsc-badge">
+                <i class="fas fa-code"></i>
+              </div>
+              <span class="cert-type-tag">Bootcamp</span>
+            </div>
+            <div class="cert-card-body">
+              <h3>Programming Bootcamp</h3>
+              <p class="cert-issuer"><i class="fab fa-google"></i> Google Developer Student Clubs</p>
+            </div>
+            <div class="cert-card-footer">
+              <span class="cert-cta-btn"><i class="fas fa-eye"></i> View Certificate ↗</span>
+            </div>
+          </div>
+
+          <div class="certificate-card slide-in-left cert-open" data-image="certificates/Github Copilot Certificate.png" data-title="GitHub Copilot Course Completion – GITHUB">
+            <div class="cert-card-header">
+              <div class="cert-icon-badge github-badge">
+                <i class="fab fa-github"></i>
+              </div>
+              <span class="cert-type-tag">AI Development</span>
+            </div>
+            <div class="cert-card-body">
+              <h3>GitHub Copilot Certified</h3>
+              <p class="cert-issuer"><i class="fab fa-github"></i> GitHub</p>
+            </div>
+            <div class="cert-card-footer">
+              <span class="cert-cta-btn"><i class="fas fa-eye"></i> View Certificate ↗</span>
+            </div>
+          </div>
+
+          <div class="certificate-card fade-in cert-open" data-image="certificates/AWS_Academy_Graduate Certificate.jpg" data-title="AWS Academy Graduate – Cloud Foundations">
+            <div class="cert-card-header">
+              <div class="cert-icon-badge aws-badge">
+                <i class="fab fa-aws"></i>
+              </div>
+              <span class="cert-type-tag">Cloud Computing</span>
+            </div>
+            <div class="cert-card-body">
+              <h3>AWS Cloud Foundations</h3>
+              <p class="cert-issuer"><i class="fas fa-cloud"></i> AWS Academy</p>
+            </div>
+            <div class="cert-card-footer">
+              <span class="cert-cta-btn"><i class="fas fa-file-pdf"></i> View PDF Certificate ↗</span>
+            </div>
+          </div>
+
+          <div class="certificate-card fade-in-delayed cert-open" data-image="certificates/Red_Hat certificate.jpg" data-title="Red Hat Linux System Administration">
+            <div class="cert-card-header">
+              <div class="cert-icon-badge redhat-badge">
+                <i class="fab fa-redhat"></i>
+              </div>
+              <span class="cert-type-tag">System Admin</span>
+            </div>
+            <div class="cert-card-body">
+              <h3>Red Hat Linux Admin</h3>
+              <p class="cert-issuer"><i class="fas fa-server"></i> Red Hat Academy</p>
+            </div>
+            <div class="cert-card-footer">
+              <span class="cert-cta-btn"><i class="fas fa-file-pdf"></i> View PDF Certificate ↗</span>
+            </div>
+          </div>
+
+          <div class="certificate-card fade-in-delayed cert-open" data-image="certificates/Training Workshop on Cybersecurity in the Era of Digitalization Certificate.jpeg" data-title="Training Workshop on Cybersecurity in the Era of Digitalization">
+            <div class="cert-card-header">
+              <div class="cert-icon-badge cyber-badge">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <span class="cert-type-tag">Cybersecurity</span>
+            </div>
+            <div class="cert-card-body">
+              <h3>Cybersecurity Workshop</h3>
+              <p class="cert-issuer"><i class="fas fa-lock"></i> Technical Workshop</p>
+            </div>
+            <div class="cert-card-footer">
+              <span class="cert-cta-btn"><i class="fas fa-eye"></i> View Certificate ↗</span>
+            </div>
+          </div>
+
+          <div class="certificate-card fade-in cert-open" data-image="certificates/10Pearls Certificate.jpeg" data-title="10Pearls MERN Stack Internship Certificate">
+            <div class="cert-card-header">
+              <div class="cert-icon-badge pearls-badge">
+                <i class="fas fa-laptop-code"></i>
+              </div>
+              <span class="cert-type-tag">Full-Stack Internship</span>
+            </div>
+            <div class="cert-card-body">
+              <h3>MERN Stack Internship</h3>
+              <p class="cert-issuer"><i class="fas fa-briefcase"></i> 10Pearls</p>
+            </div>
+            <div class="cert-card-footer">
+              <span class="cert-cta-btn"><i class="fas fa-eye"></i> View Certificate ↗</span>
+            </div>
+          </div>
+
+          <div class="certificate-card fade-in cert-open" data-image="certificates/codealpha interenship certificate.jpg" data-title="CodeAlpha Frontend Development Internship Certificate">
+            <div class="cert-card-header">
+              <div class="cert-icon-badge pearls-badge">
+                <i class="fas fa-laptop-code"></i>
+              </div>
+              <span class="cert-type-tag">Frontend Development Internship</span>
+            </div>
+            <div class="cert-card-body">
+              <h3>Frontend Development Internship</h3>
+              <p class="cert-issuer"><i class="fas fa-briefcase"></i> CodeAlpha</p>
+            </div>
+            <div class="cert-card-footer">
+              <span class="cert-cta-btn"><i class="fas fa-eye"></i> View Certificate ↗</span>
+            </div>
+          </div>
+
+          <div class="certificate-card fade-in cert-open" data-image="certificates/Mehik Nankani elevo_pathway certificate.jpg" data-title="Elevvo Pathway Frontend Development Internship Certificate">
+            <div class="cert-card-header">
+              <div class="cert-icon-badge pearls-badge">
+                <i class="fas fa-laptop-code"></i>
+              </div>
+              <span class="cert-type-tag">Frontend Internship</span>
+            </div>
+            <div class="cert-card-body">
+              <h3>Frontend Development Internship</h3>
+              <p class="cert-issuer"><i class="fas fa-briefcase"></i> Elevvo Pathway</p>
+            </div>
+            <div class="cert-card-footer">
+              <span class="cert-cta-btn"><i class="fas fa-eye"></i> View Certificate ↗</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section id="experience" class="slide-in-bottom">
+      <div class="section-header-wrapper">
+        <span class="section-tag"><i class="fas fa-briefcase"></i> Career Highlights</span>
+        <h2>Work Experience</h2>
+      </div>
+      <div class="work-experience-timeline">
+
+        <article class="work-experience-entry slide-in-left stagger-1">
+          <div class="work-experience-icon"><i class="fas fa-briefcase"></i></div>
+          <div class="work-experience-content">
+            <div class="work-experience-header">
+              <div>
+                <h3>MERN Stack Intern</h3>
+                <p class="work-experience-company"><i class="fas fa-building"></i> 10Pearls</p>
+              </div>
+              <div class="work-experience-meta">
+                <span class="work-experience-type">Virtual Internship</span>
+                <span class="work-experience-duration"><i class="fas fa-calendar-alt"></i> 2025</span>
+                <button type="button" class="work-exp-cert-icon cert-open" data-image="certificates/10Pearls Certificate.jpeg" data-title="10Pearls MERN Stack Internship Certificate" title="View Internship Certificate" aria-label="View Internship Certificate">
+                  <i class="fas fa-arrow-up-right-from-square"></i>
+                </button>
+              </div>
+            </div>
+            <ul class="work-experience-bullets">
+              <li><i class="fas fa-check-circle"></i> Developed full-stack web applications using MongoDB, Express.js, React.js, and Node.js.</li>
+              <li><i class="fas fa-check-circle"></i> Built reusable UI components and integrated RESTful APIs with team collaboration on GitHub.</li>
+            </ul>
+            <div class="work-exp-tech-pills">
+              <span class="exp-pill">MongoDB</span>
+              <span class="exp-pill">Express.js</span>
+              <span class="exp-pill">React.js</span>
+              <span class="exp-pill">Node.js</span>
+              <span class="exp-pill">REST APIs</span>
+              <span class="exp-pill">Git &amp; GitHub</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-experience-entry fade-in stagger-2">
+          <div class="work-experience-icon"><i class="fas fa-code"></i></div>
+          <div class="work-experience-content">
+            <div class="work-experience-header">
+              <div>
+                <h3>Frontend Development Intern</h3>
+                <p class="work-experience-company"><i class="fas fa-building"></i> CodeAlpha</p>
+              </div>
+              <div class="work-experience-meta">
+                <span class="work-experience-type">Virtual Internship</span>
+                <span class="work-experience-duration"><i class="fas fa-calendar-alt"></i> July 2025 – Aug 2025</span>
+                <button type="button" class="work-exp-cert-icon cert-open" data-image="certificates/codealpha interenship certificate.jpg" data-title="CodeAlpha Frontend Development Internship Certificate" title="View Internship Certificate" aria-label="View Internship Certificate">
+                  <i class="fas fa-arrow-up-right-from-square"></i>
+                </button>
+              </div>
+            </div>
+            <ul class="work-experience-bullets">
+              <li><i class="fas fa-check-circle"></i> Built responsive, pixel-perfect web pages using modern HTML5, CSS3, and JavaScript.</li>
+              <li><i class="fas fa-check-circle"></i> Implemented interactive UI animations, smooth navigation, and cross-browser debugging.</li>
+            </ul>
+            <div class="work-exp-tech-pills">
+              <span class="exp-pill">HTML5</span>
+              <span class="exp-pill">CSS3</span>
+              <span class="exp-pill">JavaScript</span>
+              <span class="exp-pill">UI Animations</span>
+              <span class="exp-pill">Responsive Design</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-experience-entry slide-in-right stagger-3">
+          <div class="work-experience-icon"><i class="fas fa-laptop-code"></i></div>
+          <div class="work-experience-content">
+            <div class="work-experience-header">
+              <div>
+                <h3>Frontend Development Intern</h3>
+                <p class="work-experience-company"><i class="fas fa-building"></i> Elevvo Pathway</p>
+              </div>
+              <div class="work-experience-meta">
+                <span class="work-experience-type">Virtual Internship</span>
+                <span class="work-experience-duration"><i class="fas fa-calendar-alt"></i> 2025</span>
+                <button type="button" class="work-exp-cert-icon cert-open" data-image="certificates/Mehik Nankani elevo_pathway certificate.jpg" data-title="Elevvo Pathway Frontend Development Internship Certificate" title="View Internship Certificate" aria-label="View Internship Certificate">
+                  <i class="fas fa-arrow-up-right-from-square"></i>
+                </button>
+              </div>
+            </div>
+            <ul class="work-experience-bullets">
+              <li><i class="fas fa-check-circle"></i> Designed and developed responsive frontend web applications with clean code architecture.</li>
+              <li><i class="fas fa-check-circle"></i> Optimized website performance, accessibility, and mobile layout compatibility.</li>
+            </ul>
+            <div class="work-exp-tech-pills">
+              <span class="exp-pill">Frontend Dev</span>
+              <span class="exp-pill">JavaScript</span>
+              <span class="exp-pill">CSS Flexbox/Grid</span>
+              <span class="exp-pill">UI/UX Layouts</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="slide-in-bottom">
+      <div class="section-header-wrapper">
+        <span class="section-tag"><i class="fas fa-tools"></i> Technical Capabilities</span>
+        <h2>Skills &amp; Expertise</h2>
+      </div>
+      <p class="skills-sub">Technologies, tools, and design capabilities I bring to the table</p>
+
+      <!-- Category Filter Tabs -->
+      <div class="skills-filter-wrapper">
+        <button class="skills-tab-btn active" data-filter="all">
+          <i class="fas fa-layer-group"></i> All Skills
+        </button>
+        <button class="skills-tab-btn" data-filter="frontend">
+          <i class="fas fa-laptop-code"></i> Frontend
+        </button>
+        <button class="skills-tab-btn" data-filter="backend">
+          <i class="fas fa-server"></i> Backend &amp; DB
+        </button>
+        <button class="skills-tab-btn" data-filter="design">
+          <i class="fas fa-palette"></i> UI/UX Design
+        </button>
+        <button class="skills-tab-btn" data-filter="tools">
+          <i class="fas fa-tools"></i> Tools &amp; Soft Skills
+        </button>
+      </div>
+
+      <!-- Modern Tech Skills Grid -->
+      <div class="modern-skills-grid">
+
+        <!-- FRONTEND SKILLS -->
+        <div class="modern-skill-card" data-category="frontend">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge react-bg"><i class="fab fa-react"></i></div>
+            <div class="skill-info">
+              <h4>React.js</h4>
+            </div>
+          </div>
+          <div class="skill-meter-track">
+            <div class="skill-meter-fill" data-width="90%"></div>
+          </div>
+        </div>
+
+        <div class="modern-skill-card" data-category="frontend">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge js-bg"><i class="fab fa-js-square"></i></div>
+            <div class="skill-info">
+              <h4>JavaScript</h4>
+            </div>
+          </div>
+          <div class="skill-meter-track">
+            <div class="skill-meter-fill" data-width="90%"></div>
+          </div>
+        </div>
+
+        <div class="modern-skill-card" data-category="frontend">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge html-bg"><i class="fab fa-html5"></i></div>
+            <div class="skill-info">
+              <h4>HTML5</h4>
+            </div>
+          </div>
+          <div class="skill-meter-track">
+            <div class="skill-meter-fill" data-width="95%"></div>
+          </div>
+        </div>
+
+        <div class="modern-skill-card" data-category="frontend">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge css-bg"><i class="fab fa-css3-alt"></i></div>
+            <div class="skill-info">
+              <h4>CSS3 &amp; Responsive Layouts</h4>
+            </div>
+          </div>
+          <div class="skill-meter-track">
+            <div class="skill-meter-fill" data-width="92%"></div>
+          </div>
+        </div>
+
+        <div class="modern-skill-card" data-category="frontend">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge native-bg"><i class="fas fa-mobile-alt"></i></div>
+            <div class="skill-info">
+              <h4>React Native</h4>
+            </div>
+          </div>
+          <div class="skill-meter-track">
+            <div class="skill-meter-fill" data-width="65%"></div>
+          </div>
+        </div>
+
+        <!-- BACKEND & DB SKILLS -->
+        <div class="modern-skill-card" data-category="backend">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge node-bg"><i class="fab fa-node-js"></i></div>
+            <div class="skill-info">
+              <h4>Node.js</h4>
+            </div>
+          </div>
+          <div class="skill-meter-track">
+            <div class="skill-meter-fill" data-width="85%"></div>
+          </div>
+        </div>
+
+        <div class="modern-skill-card" data-category="backend">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge express-bg"><i class="fas fa-server"></i></div>
+            <div class="skill-info">
+              <h4>Express.js</h4>
+            </div>
+          </div>
+          <div class="skill-meter-track">
+            <div class="skill-meter-fill" data-width="85%"></div>
+          </div>
+        </div>
+
+        <div class="modern-skill-card" data-category="backend">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge mongo-bg"><i class="fas fa-database"></i></div>
+            <div class="skill-info">
+              <h4>MongoDB &amp; Mongoose</h4>
+            </div>
+          </div>
+          <div class="skill-meter-track">
+            <div class="skill-meter-fill" data-width="80%"></div>
+          </div>
+        </div>
+
+        <div class="modern-skill-card" data-category="backend">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge api-bg"><i class="fas fa-plug"></i></div>
+            <div class="skill-info">
+              <h4>REST APIs &amp; JWT Auth</h4>
+            </div>
+          </div>
+          <div class="skill-meter-track">
+            <div class="skill-meter-fill" data-width="85%"></div>
+          </div>
+        </div>
+
+        <!-- UI/UX DESIGN SKILLS -->
+        <div class="modern-skill-card" data-category="design">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge illustrator-bg"><i class="fas fa-pen-nib"></i></div>
+            <div class="skill-info">
+              <h4>Adobe Illustrator &amp; Visual Design</h4>
+            </div>
+          </div>
+          <div class="skill-meter-track">
+            <div class="skill-meter-fill" data-width="85%"></div>
+          </div>
+        </div>
+
+        <!-- TOOLS & SOFT SKILLS -->
+        <div class="modern-skill-card" data-category="tools">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge git-bg"><i class="fab fa-git-alt"></i></div>
+            <div class="skill-info">
+              <h4>Git &amp; GitHub Workflow</h4>
+            </div>
+          </div>
+          <div class="skill-meter-track">
+            <div class="skill-meter-fill" data-width="90%"></div>
+          </div>
+        </div>
+
+        <div class="modern-skill-card" data-category="tools">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge python-bg"><i class="fab fa-python"></i></div>
+            <div class="skill-info">
+              <h4>Python Programming</h4>
+            </div>
+          </div>
+          <div class="skill-meter-track">
+            <div class="skill-meter-fill" data-width="72%"></div>
+          </div>
+        </div>
+
+        <div class="modern-skill-card" data-category="tools">
+          <div class="skill-card-top">
+            <div class="skill-icon-badge soft-bg"><i class="fas fa-lightbulb"></i></div>
+            <div class="skill-info">
+              <h4>Problem Solving &amp; Teamwork</h4>
+            </div>
+          </div>
+          <div class="skill-meter-track">
+            <div class="skill-meter-fill" data-width="95%"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="fade-in">
+      <div class="section-header-wrapper">
+        <span class="section-tag"><i class="fas fa-folder-open"></i> Portfolio Work</span>
+        <h2>Featured Projects</h2>
+      </div>
+      <p class="projects-sub">A showcase of full-stack web applications, mobile apps, UI/UX designs, and AI systems</p>
+
+      <!-- Category Filter Tabs -->
+      <div class="projects-filter-wrapper">
+        <button class="projects-tab-btn active" data-filter="all">
+          <i class="fas fa-layer-group"></i> All Projects
+        </button>
+        <button class="projects-tab-btn" data-filter="fullstack">
+          <i class="fas fa-laptop-code"></i> Full-Stack
+        </button>
+        <button class="projects-tab-btn" data-filter="mobile">
+          <i class="fas fa-mobile-alt"></i> Mobile Apps
+        </button>
+        <button class="projects-tab-btn" data-filter="design">
+          <i class="fas fa-palette"></i> UI/UX Design
+        </button>
+        <button class="projects-tab-btn" data-filter="ai-systems">
+          <i class="fas fa-brain"></i> AI &amp; Systems
+        </button>
+      </div>
+
+      <!-- Modern Projects Grid -->
+      <div class="projects-grid">
+
+        <!-- PROJECT 1: CareerMap -->
+        <div class="modern-project-card fade-in" data-category="fullstack" style="animation-delay:0.05s;">
+          <div class="project-img-container">
+            <span class="project-category-badge featured-badge"><i class="fas fa-star"></i> Featured FYP</span>
+            <img src="images/careermap-project.png" alt="CareerMap project preview" class="project-card-img">
+            <div class="project-img-overlay">
+              <a href="https://career-map-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" class="overlay-btn">
+                <i class="fas fa-external-link-alt"></i> Live Demo
+              </a>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <h3>CareerMap</h3>
+            <p>Full-stack student career guidance platform featuring university search, mentor matching, real-time chat, PayFast payment gateway, and a study-material marketplace.</p>
+            <div class="tech-pills">
+              <span class="tech-pill react-pill">React.js</span>
+              <span class="tech-pill node-pill">Node.js</span>
+              <span class="tech-pill express-pill">Express.js</span>
+              <span class="tech-pill mongo-pill">MongoDB</span>
+            </div>
+          </div>
+          <div class="project-card-footer">
+            <a href="https://career-map-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-project-link">
+              <span>Live Demo</span> <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- PROJECT 2: Bookworm -->
+        <div class="modern-project-card fade-in-delayed" data-category="mobile" style="animation-delay:0.1s;">
+          <div class="project-img-container">
+            <span class="project-category-badge mobile-badge"><i class="fas fa-mobile-alt"></i> Mobile App</span>
+            <img src="images/bookworm project image.jpg" alt="Bookworm project preview" class="project-card-img">
+            <div class="project-img-overlay">
+              <a href="https://expo.dev/accounts/mahek_nankani/projects/BookWorm/builds/42547021-8553-48f8-80ff-a59c8c8a6e93" target="_blank" rel="noopener noreferrer" class="overlay-btn" style="background: linear-gradient(135deg, #10b981, #059669); border-color: #34d399; box-shadow: 0 4px 20px rgba(16, 185, 129, 0.5);">
+                <i class="fab fa-android"></i> Download APK
+              </a>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <h3>Bookworm Mobile App</h3>
+            <p>Full-stack mobile book community &amp; reading platform featuring secure JWT authentication, eBook uploading with Cloudinary, in-app PDF reader, page-by-page progress tracking, personalized library status, ratings, and social feed discovery.</p>
+            <div class="tech-pills">
+              <span class="tech-pill native-pill">React Native</span>
+              <span class="tech-pill node-pill">Node.js</span>
+              <span class="tech-pill express-pill">Express.js</span>
+              <span class="tech-pill mongo-pill">MongoDB</span>
+            </div>
+          </div>
+          <div class="project-card-footer">
+            <a href="https://github.com/maheknankani/BookWorm_Project" target="_blank" rel="noopener noreferrer" class="btn-project-link">
+              <span>View Source</span> <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- PROJECT 3: E-Commerce App -->
+        <div class="modern-project-card fade-in" data-category="mobile" style="animation-delay:0.15s;">
+          <div class="project-img-container">
+            <span class="project-category-badge mobile-badge"><i class="fas fa-shopping-bag"></i> E-Commerce</span>
+            <img src="images/ecomerce.jpeg" alt="E-Commerce App preview" class="project-card-img">
+            <div class="project-img-overlay">
+              <span class="overlay-tag"><i class="fas fa-shopping-cart"></i> Mobile Shopping</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <h3>E-Commerce App</h3>
+            <p>Mobile shopping application built using React Native featuring smooth navigation, product catalogs, cart checkout workflows, and mobile responsiveness.</p>
+            <div class="tech-pills">
+              <span class="tech-pill native-pill">React Native</span>
+              <span class="tech-pill js-pill">JavaScript</span>
+              <span class="tech-pill css-pill">Mobile UI</span>
+            </div>
+          </div>
+          <div class="project-card-footer">
+            <span class="btn-project-link disabled-link">
+              <span>React Native</span> <i class="fas fa-mobile-alt"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- PROJECT 4: Home Service App UI/UX -->
+        <div class="modern-project-card slide-in-left" data-category="design" style="animation-delay:0.2s;">
+          <div class="project-img-container">
+            <span class="project-category-badge design-badge"><i class="fas fa-palette"></i> UI/UX Design</span>
+            <img src="uiux.webp" alt="Home Service App UI/UX preview" class="project-card-img">
+            <div class="project-img-overlay">
+              <span class="overlay-tag"><i class="fas fa-paint-brush"></i> Branding &amp; UI</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <h3>Home Service App UI/UX</h3>
+            <p>Designed brand identity, logos, vector assets, and modern app interface layouts using Adobe Illustrator for an on-demand home service mobile platform.</p>
+            <div class="tech-pills">
+              <span class="tech-pill illustrator-pill">Adobe Illustrator</span>
+              <span class="tech-pill figma-pill">Figma</span>
+              <span class="tech-pill design-pill">Visual Design</span>
+            </div>
+          </div>
+          <div class="project-card-footer">
+            <span class="btn-project-link disabled-link">
+              <span>UI Showcase</span> <i class="fas fa-pen-nib"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- PROJECT 5: Weather Prediction System -->
+        <div class="modern-project-card fade-in-right" data-category="ai-systems" style="animation-delay:0.25s;">
+          <div class="project-img-container">
+            <span class="project-category-badge ai-badge"><i class="fas fa-brain"></i> AI &amp; ML</span>
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Weather Prediction System" class="project-card-img">
+            <div class="project-img-overlay">
+              <span class="overlay-tag"><i class="fas fa-cloud-sun-rain"></i> Machine Learning</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <h3>Weather Prediction System</h3>
+            <p>Artificial Intelligence project utilizing Multilayer Perceptron (MLP), K-Nearest Neighbors (KNN), and Decision Tree algorithms for forecasting weather across major cities.</p>
+            <div class="tech-pills">
+              <span class="tech-pill python-pill">Python</span>
+              <span class="tech-pill ai-pill">MLP Algorithm</span>
+              <span class="tech-pill ai-pill">KNN &amp; Decision Trees</span>
+            </div>
+          </div>
+          <div class="project-card-footer">
+            <span class="btn-project-link disabled-link">
+              <span>AI System</span> <i class="fas fa-robot"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- PROJECT 6: SZABIST Campus Network -->
+        <div class="modern-project-card slide-in-bottom" data-category="ai-systems" style="animation-delay:0.3s;">
+          <div class="project-img-container">
+            <span class="project-category-badge system-badge"><i class="fas fa-network-wired"></i> Network System</span>
+            <img src="images/cisco-image.webp" alt="SZABIST Campus Network preview" class="project-card-img">
+            <div class="project-img-overlay">
+              <span class="overlay-tag"><i class="fas fa-server"></i> Packet Tracer</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <h3>SZABIST Campus Network</h3>
+            <p>Architected and simulated a complete multi-building university campus network infrastructure using Cisco Packet Tracer with VLSM subnetting and IP route management.</p>
+            <div class="tech-pills">
+              <span class="tech-pill cisco-pill">Cisco Packet Tracer</span>
+              <span class="tech-pill net-pill">VLSM Subnetting</span>
+              <span class="tech-pill net-pill">IP Routing</span>
+            </div>
+          </div>
+          <div class="project-card-footer">
+            <span class="btn-project-link disabled-link">
+              <span>Network Topology</span> <i class="fas fa-project-diagram"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- PROJECT 7: Coffee Website -->
+        <div class="modern-project-card fade-in-delayed" data-category="frontend" style="animation-delay:0.35s;">
+          <div class="project-img-container">
+            <span class="project-category-badge web-badge"><i class="fas fa-coffee"></i> Web App</span>
+            <img src="images/coffee-website.jpg" alt="Coffee Website preview" class="project-card-img">
+            <div class="project-img-overlay">
+              <span class="overlay-tag"><i class="fas fa-mug-hot"></i> Modern UI</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <h3>Coffee Shop Website</h3>
+            <p>A responsive, aesthetically pleasing coffee shop website with intuitive navigation, menu showcases, and modern visual design principles.</p>
+            <div class="tech-pills">
+              <span class="tech-pill html-pill">HTML5</span>
+              <span class="tech-pill css-pill">CSS3</span>
+              <span class="tech-pill js-pill">JavaScript</span>
+            </div>
+          </div>
+          <div class="project-card-footer">
+            <span class="btn-project-link disabled-link">
+              <span>Responsive Web</span> <i class="fas fa-laptop"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- PROJECT 8: Chatbot -->
+        <div class="modern-project-card fade-in" data-category="frontend" style="animation-delay:0.4s;">
+          <div class="project-img-container">
+            <span class="project-category-badge web-badge"><i class="fas fa-comments"></i> Interactive</span>
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80" alt="Chatbot preview" class="project-card-img">
+            <div class="project-img-overlay">
+              <span class="overlay-tag"><i class="fas fa-comment-dots"></i> Conversation UI</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <h3>Interactive Chatbot</h3>
+            <p>Interactive web chatbot created with vanilla JavaScript to simulate real-time conversational responses and enhance user engagement.</p>
+            <div class="tech-pills">
+              <span class="tech-pill html-pill">HTML5</span>
+              <span class="tech-pill css-pill">CSS3</span>
+              <span class="tech-pill js-pill">JavaScript</span>
+            </div>
+          </div>
+          <div class="project-card-footer">
+            <span class="btn-project-link disabled-link">
+              <span>Web Interface</span> <i class="fas fa-comments"></i>
+            </span>
+          </div>
+        </div>
+
+        <!-- PROJECT 9: Age Calculator -->
+        <div class="modern-project-card slide-in-bottom" data-category="frontend" style="animation-delay:0.45s;">
+          <div class="project-img-container">
+            <span class="project-category-badge web-badge"><i class="fas fa-calculator"></i> Utility</span>
+            <img src="images/Age-calculator.png" alt="Age Calculator preview" class="project-card-img">
+            <div class="project-img-overlay">
+              <span class="overlay-tag"><i class="fas fa-calendar-check"></i> Date Logic</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <h3>Dynamic Age Calculator</h3>
+            <p>A clean web application utility built with JavaScript to calculate precise age down to years, months, and days based on date input.</p>
+            <div class="tech-pills">
+              <span class="tech-pill js-pill">JavaScript</span>
+              <span class="tech-pill html-pill">HTML5</span>
+              <span class="tech-pill css-pill">CSS3</span>
+            </div>
+          </div>
+          <div class="project-card-footer">
+            <span class="btn-project-link disabled-link">
+              <span>Web Tool</span> <i class="fas fa-tools"></i>
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="fade-in">
+      <div class="section-header-wrapper">
+        <span class="section-tag"><i class="fas fa-paper-plane"></i> Get In Touch</span>
+        <h2>Let's Connect</h2>
+      </div>
+      <p class="contact-sub">Have a project in mind or just want to say hello? I'd love to hear from you.</p>
+
+      <div class="contact-layout">
+
+        <!-- Contact Info Cards -->
+        <div class="contact-info-panel">
+          <div class="contact-info-card slide-in-left stagger-1">
+            <div class="contact-info-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="contact-info-text">
+              <span class="contact-info-label">Location</span>
+              <span class="contact-info-value">Saddar, Karachi</span>
+            </div>
+          </div>
+          <div class="contact-info-card slide-in-left stagger-2">
+            <div class="contact-info-icon"><i class="fas fa-phone-alt"></i></div>
+            <div class="contact-info-text">
+              <span class="contact-info-label">Phone</span>
+              <a href="tel:+923051233630" class="contact-info-value contact-link">0305-1233630</a>
+            </div>
+          </div>
+          <div class="contact-info-card slide-in-left stagger-3">
+            <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
+            <div class="contact-info-text">
+              <span class="contact-info-label">Email</span>
+              <a href="mailto:Maheknankani34@gmail.com" class="contact-info-value contact-link">Maheknankani34@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-info-card slide-in-left stagger-4">
+            <div class="contact-info-icon"><i class="fab fa-linkedin-in"></i></div>
+            <div class="contact-info-text">
+              <span class="contact-info-label">LinkedIn</span>
+              <a href="https://www.linkedin.com/in/mahek-nankani" target="_blank" class="contact-info-value contact-link">mahek-nankani</a>
+            </div>
+          </div>
+          <div class="contact-info-card slide-in-left stagger-5">
+            <div class="contact-info-icon"><i class="fab fa-github"></i></div>
+            <div class="contact-info-text">
+              <span class="contact-info-label">GitHub</span>
+              <a href="https://github.com/maheknankani" target="_blank" class="contact-info-value contact-link">maheknankani</a>
+            </div>
+          </div>
+          <div class="contact-availability slide-in-left stagger-6">
+            <span class="availability-dot"></span>
+            <span>Available for freelance &amp; full-time opportunities</span>
+          </div>
+        </div>
+
+        <!-- Contact Form (Formspree Integration) -->
+        <form class="contact-form-premium" id="contactForm" action="https://formspree.io/f/myegeeqe" method="POST" novalidate>
+          <div class="form-group">
+            <label for="contact-name">Your Name</label>
+            <div class="input-wrapper">
+              <i class="fas fa-user input-icon"></i>
+              <input type="text" id="contact-name" name="name" placeholder="Mahek Nankani" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Email Address</label>
+            <div class="input-wrapper">
+              <i class="fas fa-envelope input-icon"></i>
+              <input type="email" id="contact-email" name="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contact-subject">Subject</label>
+            <div class="input-wrapper">
+              <i class="fas fa-tag input-icon"></i>
+              <input type="text" id="contact-subject" name="subject" placeholder="Project Collaboration">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" rows="5" placeholder="Tell me about your project or just say hi..." required></textarea>
+          </div>
+          <button type="submit" class="btn-contact-submit">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Certificate Modal (Enhanced PDF & Image Viewer) -->
+  <div id="cert-modal" class="cert-modal" aria-hidden="true">
+    <div class="cert-modal-backdrop" data-close="true"></div>
+    <div class="cert-modal-panel" role="dialog" aria-modal="true" aria-labelledby="cert-title">
+      <button class="cert-modal-close" aria-label="Close certificate">&times;</button>
+      <div class="cert-modal-body">
+        <div id="cert-modal-media-wrapper" class="cert-modal-media-wrapper">
+          <img id="cert-modal-img" src="" alt="Certificate image">
+          <iframe id="cert-modal-iframe" src="" style="display:none;" title="Certificate PDF Viewer"></iframe>
+        </div>
+        <div class="cert-modal-meta">
+          <h3 id="cert-title" class="cert-modal-title"></h3>
+          <a id="cert-modal-pdf-btn" href="" target="_blank" class="btn-outline btn-small" style="display:none;">
+            <i class="fas fa-external-link-alt"></i> Open Full Document
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <footer>
+    <div>&copy; 2025 Mehik Kumari (Mahek Nankani)</div>
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/mahek-nankani" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/maheknankani" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    </div>
+  </footer>
+
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+  <script>
+    (function(){
+      const modal = document.getElementById('cert-modal');
+      const modalImg = document.getElementById('cert-modal-img');
+      const modalIframe = document.getElementById('cert-modal-iframe');
+      const modalPdfBtn = document.getElementById('cert-modal-pdf-btn');
+      const modalTitle = document.getElementById('cert-title');
+      const closeBtn = document.querySelector('.cert-modal-close');
+
+      function openModal(src, title){
+        const isPdf = src.toLowerCase().endsWith('.pdf');
+
+        if (isPdf) {
+          modalImg.style.display = 'none';
+          modalIframe.style.display = 'block';
+          modalIframe.src = src;
+          if (modalPdfBtn) {
+            modalPdfBtn.href = src;
+            modalPdfBtn.style.display = 'inline-flex';
+          }
+        } else {
+          modalIframe.style.display = 'none';
+          modalIframe.src = '';
+          modalImg.style.display = 'block';
+          modalImg.src = src;
+          modalImg.alt = title;
+          if (modalPdfBtn) modalPdfBtn.style.display = 'none';
+        }
+
+        modalTitle.textContent = title;
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        setTimeout(()=> closeBtn.focus(), 120);
+      }
+
+      function closeModal(){
+        modal.setAttribute('aria-hidden', 'true');
+        modalImg.src = '';
+        modalIframe.src = '';
+        modalTitle.textContent = '';
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.cert-open').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.preventDefault();
+          const img = btn.getAttribute('data-image');
+          const title = btn.getAttribute('data-title') || btn.querySelector('h3')?.textContent?.trim() || btn.textContent.trim();
+          openModal(img, title);
+        });
+      });
+
+      closeBtn.addEventListener('click', closeModal);
+
+      // close when clicking backdrop
+      document.querySelectorAll('.cert-modal-backdrop').forEach(b => b.addEventListener('click', closeModal));
+
+      // close on ESC
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeModal();
+      });
+
+      // stop clicks inside panel from closing
+      document.querySelectorAll('.cert-modal-panel').forEach(panel => panel.addEventListener('click', e => e.stopPropagation()));
+
+      // prevent focus from leaving modal when open
+      document.addEventListener('focus', function(event){
+        if(modal.getAttribute('aria-hidden') === 'false' && !modal.contains(event.target)){
+          event.stopPropagation();
+          closeBtn.focus();
+        }
+      }, true);
+    })();
+  </script>
+</body>
+
+</html>
