@@ -504,7 +504,9 @@ body.theme-dark {
 }
 
 body.theme-dark header {
-  background: rgba(15, 23, 42, 0.92);
+  background: rgba(15, 23, 42, 0.96) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 body.theme-dark .hero::after {
@@ -5999,16 +6001,19 @@ body.theme-dark .work-exp-cert-wrapper {
 @media (max-width: 400px) {
 
   .hero-stats {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 0.6rem;
-    width: fit-content;
-    margin: 0 auto 1.5rem;
+    justify-content: space-around;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 1rem;
+    padding: 0.55rem 0.75rem;
   }
 
   .hero-stat-divider {
-    width: 40px;
-    height: 1px;
+    width: 1px;
+    height: 26px;
   }
 
   .hero-stat-number {
