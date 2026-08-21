@@ -2255,9 +2255,9 @@ textarea:focus {
   .hero {
     flex-direction: column;
     text-align: center;
-    gap: 40px;
-    padding: 100px 1rem 60px;
-    min-height: 100vh;
+    gap: 25px;
+    padding: 75px 1rem 30px;
+    min-height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -6494,21 +6494,21 @@ body.theme-dark .work-exp-cert-wrapper {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Orange Code Bracket Badge Icon styling */
+/* Electric Blue Code Bracket Badge Icon styling */
 .orange-code-badge {
-  color: #ff5722 !important;
+  color: #38bdf8 !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-right: 0.4rem;
   font-size: 1.15rem;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
-  filter: drop-shadow(0 0 8px rgba(255, 87, 34, 0.4));
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4));
 }
 
 .logo:hover .orange-code-badge {
   transform: rotate(12deg) scale(1.15);
-  color: #f4511e !important;
+  color: #60a5fa !important;
 }
 
 /* Modern Card Download APK Green Theme Button */
