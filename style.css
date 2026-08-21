@@ -68,7 +68,7 @@ section[id], div[id] {
   left: -5%;
   width: 110vw;
   height: 110vh;
-  background-image: url('homepage_wallpaper.jpg');
+  background-image: url('Images/homepage_wallpaper.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
