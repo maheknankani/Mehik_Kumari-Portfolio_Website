@@ -5,6 +5,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mehik Kumari | MERN Stack Developer</title>
+  <script>
+    (function() {
+      try {
+        var t = localStorage.getItem('portfolio-theme') || 'dark';
+        if (t === 'light') {
+          document.documentElement.classList.remove('theme-dark');
+        } else {
+          document.documentElement.classList.add('theme-dark');
+        }
+      } catch(e) {}
+    })();
+  </script>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

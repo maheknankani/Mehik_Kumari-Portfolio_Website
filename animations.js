@@ -356,14 +356,6 @@ const rippleCSS = `
         opacity: 0;
     }
 }
-
-body:not(.loaded) * {
-    animation-play-state: paused !important;
-}
-
-body.loaded {
-    animation: fadeIn 0.5s ease-in-out;
-}
 `;
 
 // Inject ripple CSS
