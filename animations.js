@@ -133,6 +133,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
+        // Close nav on window resize above mobile breakpoint (900px)
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 900 && navLinks.classList.contains('open')) {
+                closeNav();
+            }
+        });
+
         function closeNav() {
             navToggle.classList.remove('active');
             navLinks.classList.remove('open');
