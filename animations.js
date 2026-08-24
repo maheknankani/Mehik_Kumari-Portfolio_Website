@@ -58,12 +58,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Close nav when clicking overlay
-        if (navOverlay) {
-            navOverlay.addEventListener('click', () => {
-                closeNav();
-            });
-        }
+        // Close nav when clicking outside the menu drawer or toggle button
+        document.addEventListener('click', (e) => {
+            if (navLinks && navLinks.classList.contains('open')) {
+                if (!navLinks.contains(e.target) && (!navToggle || !navToggle.contains(e.target))) {
+                    closeNav();
+                }
+            }
+        });
 
         // Close nav on escape key
         document.addEventListener('keydown', (e) => {
