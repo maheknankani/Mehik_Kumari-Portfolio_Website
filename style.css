@@ -3431,7 +3431,6 @@ textarea:focus {
 
   body.nav-open {
     overflow: hidden !important;
-    touch-action: none !important;
   }
 
   .nav-links::before {

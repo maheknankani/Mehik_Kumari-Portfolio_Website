@@ -31,32 +31,112 @@ document.addEventListener('DOMContentLoaded', function() {
     );
     animatedElements.forEach(el => observer.observe(el));
 
-    // Smooth scrolling for navigation links with fixed/sticky header offset
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const targetId = this.getAttribute('href');
-            if (!targetId || targetId === '#') return;
-            const target = document.querySelector(targetId);
-            if (target) {
-                e.preventDefault();
-                const header = document.querySelector('header');
-                const headerOffset = header ? header.offsetHeight + 20 : 90;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
     // Mobile navigation toggle with hamburger animation
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
     const navOverlay = document.querySelector('.nav-overlay');
     const themeToggle = document.querySelector('.theme-toggle');
+
+    function closeNav() {
+        if (navToggle) navToggle.classList.remove('active');
+        if (navLinks) navLinks.classList.remove('open');
+        if (navOverlay) navOverlay.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        document.body.style.overflow = '';
+    }
+
+    if (navToggle && navLinks) {
+        navToggle.addEventListener('click', () => {
+            const isOpen = navLinks.classList.contains('open');
+            if (isOpen) {
+                closeNav();
+            } else {
+                navToggle.classList.add('active');
+                navLinks.classList.add('open');
+                if (navOverlay) navOverlay.classList.add('active');
+                document.body.classList.add('nav-open');
+            }
+        });
+
+        // Close nav when clicking overlay
+        if (navOverlay) {
+            navOverlay.addEventListener('click', () => {
+                closeNav();
+            });
+        }
+
+        // Close nav on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+                closeNav();
+            }
+        });
+
+        // Close nav on window resize above mobile breakpoint (900px)
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 900 && navLinks.classList.contains('open')) {
+                closeNav();
+            }
+        });
+    }
+
+    // Unified link click handler for mobile menu links, sidebar nav, and in-page anchor links
+    document.querySelectorAll('.nav-links a, .sidebar-nav a, a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const rawHref = this.getAttribute('href');
+            if (!rawHref || rawHref === '#') return;
+
+            // 1. Instantly close drawer and un-freeze body scroll
+            closeNav();
+
+            // 2. Parse target section ID for in-page smooth scrolling
+            let targetId = '';
+            if (rawHref.startsWith('#')) {
+                targetId = rawHref;
+            } else if (rawHref.includes('#')) {
+                const parts = rawHref.split('#');
+                const targetPage = parts[0];
+                const hash = '#' + parts[1];
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                
+                if (targetPage === currentPage ||
+                    (currentPage === 'index.html' && targetPage === 'home.html') ||
+                    (currentPage === 'home.html' && targetPage === 'index.html') ||
+                    targetPage === '') {
+                    targetId = hash;
+                }
+            }
+
+            if (targetId) {
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    // Wait 25ms for body overflow:hidden to unfreeze before executing scrollTo
+                    setTimeout(() => {
+                        const header = document.querySelector('header');
+                        const headerOffset = header ? header.offsetHeight + 20 : 90;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 25);
+                    return;
+                }
+            }
+
+            // 3. For cross-page navigation links (e.g., projects.html, contact.html, about.html)
+            if (!rawHref.startsWith('#')) {
+                if (this.getAttribute('target') === '_blank') return;
+                e.preventDefault();
+                setTimeout(() => {
+                    window.location.href = rawHref;
+                }, 25);
+            }
+        });
+    });
 
     const themeStorageKey = 'portfolio-theme';
     const root = document.body;
@@ -79,7 +159,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function setTheme(theme) {
         const isDark = theme === 'dark';
-        root.classList.toggle('theme-dark', isDark);
+        if (document.body) document.body.classList.toggle('theme-dark', isDark);
+        if (document.documentElement) document.documentElement.classList.toggle('theme-dark', isDark);
         storeTheme(theme);
 
         if (themeToggle) {
@@ -102,50 +183,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const nextTheme = root.classList.contains('theme-dark') ? 'light' : 'dark';
             setTheme(nextTheme);
         });
-    }
-
-    if (navToggle && navLinks) {
-        navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('active');
-            navLinks.classList.toggle('open');
-            if (navOverlay) navOverlay.classList.toggle('active');
-            document.body.classList.toggle('nav-open');
-        });
-
-        // Close nav when clicking overlay
-        if (navOverlay) {
-            navOverlay.addEventListener('click', () => {
-                closeNav();
-            });
-        }
-
-        // Close nav when clicking a link
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                closeNav();
-            });
-        });
-
-        // Close nav on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && navLinks.classList.contains('open')) {
-                closeNav();
-            }
-        });
-
-        // Close nav on window resize above mobile breakpoint (900px)
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 900 && navLinks.classList.contains('open')) {
-                closeNav();
-            }
-        });
-
-        function closeNav() {
-            navToggle.classList.remove('active');
-            navLinks.classList.remove('open');
-            if (navOverlay) navOverlay.classList.remove('active');
-            document.body.classList.remove('nav-open');
-        }
     }
 
     // ── Starting Load Animation for Hero Name ─────────────────
