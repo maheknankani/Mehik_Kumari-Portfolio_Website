@@ -1,35 +1,112 @@
 // Advanced Portfolio Animations
 document.addEventListener('DOMContentLoaded', function() {
-    
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+
+
+    // ── Dynamic Navbar Background Transition (> 50px) ─────────────────
+    const headerEl = document.querySelector('header');
+    function handleNavbarScroll() {
+        if (!headerEl) return;
+        if (window.scrollY > 50) {
+            headerEl.classList.add('scrolled');
+        } else {
+            headerEl.classList.remove('scrolled');
+        }
+    }
+    window.addEventListener('scroll', handleNavbarScroll, { passive: true });
+    handleNavbarScroll();
+
+    // ── Splash Overlay Crossfade & Unmount Handler ───────────────────────
+    const splashOverlay = document.getElementById('splash-overlay');
+    if (splashOverlay) {
+        let splashAlreadySeen = false;
+        try {
+            splashAlreadySeen = !!sessionStorage.getItem('splashShown');
+        } catch(e) {}
+
+        if (splashAlreadySeen) {
+            splashOverlay.remove();
+            document.documentElement.classList.remove('show-splash-overlay');
+        } else {
+            setTimeout(() => {
+                splashOverlay.classList.add('fade-out');
+                document.documentElement.classList.remove('show-splash-overlay');
+                try {
+                    sessionStorage.setItem('splashShown', 'true');
+                } catch(e) {}
+                setTimeout(() => {
+                    splashOverlay.remove();
+                }, 850);
+            }, 3000);
+        }
+    }
+
+    // ── Scroll Animations (Once Only + Staggered Cascade) ────────────────
+    const sectionObserverOptions = {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('animate');
+                entry.target.classList.add('animate', 'is-visible');
                 
                 // Animate skill bars
                 if (entry.target.classList.contains('skill')) {
                     const skillBar = entry.target.querySelector('.skill-level');
-                    const percentage = skillBar.style.width;
-                    skillBar.style.width = '0%';
-                    setTimeout(() => {
-                        skillBar.style.width = percentage;
-                    }, 200);
+                    if (skillBar) {
+                        const percentage = skillBar.style.width;
+                        skillBar.style.width = '0%';
+                        setTimeout(() => {
+                            skillBar.style.width = percentage;
+                        }, 200);
+                    }
                 }
+
+                // Cascade child cards with ~0.1s stagger delay
+                const childCards = entry.target.querySelectorAll(
+                    '.project-card, .modern-project-card, .skill-card, .edu-card, .certificate-badge, .timeline-entry, .contact-info-card, .skill, .stagger-child'
+                );
+                childCards.forEach((child, index) => {
+                    child.style.transitionDelay = `${(index * 0.1).toFixed(2)}s`;
+                    child.classList.add('animate', 'is-visible');
+                });
+
+                // Unobserve after trigger so animation runs once only
+                observer.unobserve(entry.target);
             }
         });
-    }, observerOptions);
+    }, sectionObserverOptions);
 
-    // Observe all animated elements
-    const animatedElements = document.querySelectorAll(
-        '.fade-in, .fade-in-delayed, .fade-in-right, .slide-in-left, .slide-in-right, .slide-in-bottom, .skill, .project-card, .certificate-badge, .modern-project-card, .contact-info-card, .timeline-entry'
+    const sectionsToObserve = document.querySelectorAll(
+        '#about, #skills, #experience, #projects, #contact, section, .reveal-on-scroll, .fade-in, .fade-in-delayed, .fade-in-right, .slide-in-left, .slide-in-right, .slide-in-bottom, .skill, .project-card, .edu-card, .certificate-badge, .modern-project-card, .contact-info-card, .timeline-entry'
     );
-    animatedElements.forEach(el => observer.observe(el));
+    sectionsToObserve.forEach(sec => sectionObserver.observe(sec));
+
+    // ── Back to Top Button (Show > 300px, Smooth Scroll) ─────────────────
+    const backToTopBtns = document.querySelectorAll('#back-to-top, #backToTop, .back-to-top, .back-to-top-btn');
+    if (backToTopBtns.length) {
+        function handleBackToTopVisibility() {
+            backToTopBtns.forEach(btn => {
+                if (window.scrollY > 300) {
+                    btn.classList.add('show');
+                } else {
+                    btn.classList.remove('show');
+                }
+            });
+        }
+        window.addEventListener('scroll', handleBackToTopVisibility, { passive: true });
+        handleBackToTopVisibility();
+
+        backToTopBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    }
 
     // Mobile navigation toggle with hamburger animation
     const navToggle = document.querySelector('.nav-toggle');
@@ -427,174 +504,102 @@ document.head.appendChild(style);
 
   skillCards.forEach(card => cardObserver.observe(card));
 })();
-
-// ── Interactive Background Particle & Constellation Canvas ────────────────
+// ── Interactive Background 3D Perspective Plexus Canvas ────────────────
 (function () {
   const canvas = document.getElementById('bg-canvas');
   if (!canvas) return;
 
   const ctx = canvas.getContext('2d');
   let width, height;
-  let particles = [];
-  let animFrameId = null;
+  let time = 0;
+  let isTabVisible = true;
 
-  const mouse = {
-    x: null,
-    y: null,
-    radius: 170
-  };
-
-  // Track Mouse Position
-  window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
+  document.addEventListener('visibilitychange', function() {
+    isTabVisible = document.visibilityState === 'visible';
   });
 
-  window.addEventListener('mouseleave', () => {
-    mouse.x = null;
-    mouse.y = null;
-  });
-
-  function getThemeColors() {
-    const isDark = document.body.classList.contains('theme-dark');
-    return isDark ? {
-      particleRGB: '147, 197, 253', // soft neon blue
-      lineRGB: '96, 165, 250',      // sky blue lines
-      mouseLineRGB: '56, 189, 248', // cyan mouse lines
-      particleAlpha: 0.55,
-      lineMaxAlpha: 0.22
-    } : {
-      particleRGB: '59, 130, 246',   // clean blue
-      lineRGB: '147, 197, 253',     // soft pale blue lines
-      mouseLineRGB: '56, 189, 248', // clean cyan mouse lines
-      particleAlpha: 0.35,
-      lineMaxAlpha: 0.12            // minimal, uncluttered lines on light background
-    };
-  }
-
-  let theme = getThemeColors();
-
-  // Watch for theme changes
-  const themeObserver = new MutationObserver(() => {
-    theme = getThemeColors();
-  });
-  themeObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
-
-  class Particle {
-    constructor() {
-      this.init();
-    }
-
-    init() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.radius = Math.random() * 2.5 + 2.0; // 2.0px to 4.5px dots
-      this.vx = (Math.random() - 0.5) * 0.8;
-      this.vy = (Math.random() - 0.5) * 0.8;
-      this.baseAlpha = Math.random() * 0.4 + 0.6;
-    }
-
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-
-      if (this.x < 0 || this.x > width) this.vx *= -1;
-      if (this.y < 0 || this.y > height) this.vy *= -1;
-
-      // Mouse repulsion / attraction interaction
-      if (mouse.x !== null && mouse.y !== null) {
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < mouse.radius) {
-          const force = (mouse.radius - dist) / mouse.radius;
-          const angle = Math.atan2(dy, dx);
-          this.x -= Math.cos(angle) * force * 1.5;
-          this.y -= Math.sin(angle) * force * 1.5;
-        }
-      }
-    }
-
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${theme.particleRGB}, ${this.baseAlpha * theme.particleAlpha})`;
-      ctx.fill();
-    }
-  }
-
-  function resize() {
+  function resizeCanvas() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
-    initParticles();
   }
 
-  function initParticles() {
-    particles = [];
-    const count = Math.min(Math.floor((width * height) / 14000), 85);
-    for (let i = 0; i < count; i++) {
-      particles.push(new Particle());
+  function animatePlexus() {
+    if (!isTabVisible) {
+      requestAnimationFrame(animatePlexus);
+      return;
     }
-  }
-
-  function connectParticles() {
-    const maxDist = 145;
-    for (let a = 0; a < particles.length; a++) {
-      for (let b = a + 1; b < particles.length; b++) {
-        const dx = particles[a].x - particles[b].x;
-        const dy = particles[a].y - particles[b].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < maxDist) {
-          const alpha = (1 - dist / maxDist) * theme.lineMaxAlpha;
-          ctx.beginPath();
-          ctx.moveTo(particles[a].x, particles[a].y);
-          ctx.lineTo(particles[b].x, particles[b].y);
-          ctx.strokeStyle = `rgba(${theme.lineRGB}, ${alpha})`;
-          ctx.lineWidth = 1.2;
-          ctx.stroke();
-        }
-      }
-
-      // Connect to mouse cursor
-      if (mouse.x !== null && mouse.y !== null) {
-        const dx = particles[a].x - mouse.x;
-        const dy = particles[a].y - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < mouse.radius) {
-          const alpha = (1 - dist / mouse.radius) * (theme.lineMaxAlpha * 1.6);
-          ctx.beginPath();
-          ctx.moveTo(particles[a].x, particles[a].y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(${theme.mouseLineRGB}, ${alpha})`;
-          ctx.lineWidth = 1.5;
-          ctx.stroke();
-        }
-      }
-    }
-  }
-
-  function animate() {
     ctx.clearRect(0, 0, width, height);
-    for (let i = 0; i < particles.length; i++) {
-      particles[i].update();
-      particles[i].draw();
+    time += 0.009;
+
+    const cols = 32;
+    const rows = 24;
+    const spacingX = width / 13;
+    const spacingZ = 45;
+    const fov = 380;
+
+    const grid = [];
+
+    for (let r = 0; r < rows; r++) {
+      grid[r] = [];
+      const z = (rows - r) * spacingZ;
+      const scale = fov / (fov + z);
+
+      for (let c = 0; c < cols; c++) {
+        const x = (c - cols / 2) * spacingX;
+        const wave = Math.sin(x * 0.003 + time * 1.4) * 65 + Math.cos(z * 0.008 + time * 1.1) * 55;
+        const y = 100 + wave;
+
+        const projX = width / 2 + x * scale;
+        const projY = height / 2 + y * scale + (r * 11);
+        const alpha = Math.max(0.12, Math.min(0.9, (1 - z / 1200)));
+
+        grid[r][c] = { x: projX, y: projY, z: z, alpha: alpha };
+      }
     }
-    connectParticles();
-    animFrameId = requestAnimationFrame(animate);
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const p = grid[r][c];
+
+        if (c < cols - 1) {
+          const pRight = grid[r][c + 1];
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(pRight.x, pRight.y);
+          ctx.strokeStyle = `rgba(59, 130, 246, ${p.alpha * 0.85})`;
+          ctx.lineWidth = 1.05 * (fov / (fov + p.z));
+          ctx.stroke();
+        }
+
+        if (r < rows - 1) {
+          const pDown = grid[r + 1][c];
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(pDown.x, pDown.y);
+          ctx.strokeStyle = `rgba(139, 92, 246, ${p.alpha * 0.75})`;
+          ctx.lineWidth = 1.05 * (fov / (fov + p.z));
+          ctx.stroke();
+        }
+
+        if (r % 2 === 0 && c % 2 === 0) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, Math.max(1.5, 2.5 * (fov / (fov + p.z))), 0, Math.PI * 2);
+          ctx.fillStyle = p.alpha > 0.35 ? '#38bdf8' : '#60a5fa';
+          ctx.shadowBlur = p.alpha > 0.35 ? 12 : 5;
+          ctx.shadowColor = '#38bdf8';
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+      }
+    }
+
+    requestAnimationFrame(animatePlexus);
   }
 
-  // Handle Resize with debounce
-  let resizeTimeout;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(resize, 150);
-  });
-
-  resize();
-  animate();
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+  animatePlexus();
 })();
-
 // ── Interactive Skills Category Filter & Meter Animate ────────────────────
 document.addEventListener('DOMContentLoaded', function () {
   const tabBtns = document.querySelectorAll('.skills-tab-btn');
@@ -777,30 +782,119 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-// ── Subtle 3D Perspective Tilt on Cards (Desktop) ──────────────────────────
-document.addEventListener('DOMContentLoaded', function () {
-  if (window.innerWidth < 900) return;
+// ── Upgraded Interactive 3D Perspective Tilt on Project Cards ───────────────
+(function init3DTiltCards() {
+  function attachTilt() {
+    if (window.innerWidth < 768) return;
 
-  const tiltCards = document.querySelectorAll('.modern-project-card, .certificate-card, .highlight-item, .contact-info-card');
-  tiltCards.forEach(card => {
-    card.addEventListener('mousemove', function (e) {
-      const rect = this.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
+    const cards = document.querySelectorAll(
+      '.project-card, .modern-project-card, .certificate-card, .edu-card, .highlight-item, .contact-info-card'
+    );
 
-      const rotateX = (centerY - y) / 25;
-      const rotateY = (x - centerX) / 25;
+    cards.forEach(card => {
+      if (card.dataset.tiltInitialized) return;
+      card.dataset.tiltInitialized = 'true';
 
-      this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      card.style.transformStyle = 'preserve-3d';
+      card.style.willChange = 'transform';
+
+      card.addEventListener('mousemove', function (e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        // Max tilt angles: 12deg X and Y
+        const rotateX = (((centerY - y) / centerY) * 12).toFixed(2);
+        const rotateY = (((x - centerX) / centerX) * 12).toFixed(2);
+
+        this.style.setProperty('--mouse-x', `${x.toFixed(1)}px`);
+        this.style.setProperty('--mouse-y', `${y.toFixed(1)}px`);
+
+        this.style.transition = 'transform 0.12s ease-out, box-shadow 0.3s ease, border-color 0.3s ease';
+        this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03) translateY(-6px)`;
+        this.style.borderColor = 'rgba(56, 189, 248, 0.55)';
+        this.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.5), 0 0 45px rgba(56, 189, 248, 0.38), 0 0 25px rgba(139, 92, 246, 0.28)';
+      });
+
+      card.addEventListener('mouseleave', function () {
+        this.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease, border-color 0.6s ease';
+        this.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translateY(0)';
+        this.style.borderColor = '';
+        this.style.boxShadow = '';
+      });
     });
+  }
 
-    card.addEventListener('mouseleave', function () {
-      this.style.transform = '';
-    });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attachTilt);
+  } else {
+    attachTilt();
+  }
+
+  // Re-attach when dynamic categories or projects filter buttons are clicked
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('.filter-btn, .project-filter-btn, .category-btn, .tab-btn, .skills-tab-btn')) {
+      setTimeout(attachTilt, 200);
+    }
   });
-});
+})();
+
+// ── Interactive Skills Category Filter Tabs & Animated Meters ───────────────
+(function initSkillsFilter() {
+  function setupSkills() {
+    const tabs = document.querySelectorAll('.skills-tab-btn');
+    const cards = document.querySelectorAll('.modern-skill-card');
+    const meters = document.querySelectorAll('.skill-meter-fill');
+
+    // 1. Animate meter fills immediately on load
+    meters.forEach(meter => {
+      const targetWidth = meter.dataset.width || '85%';
+      setTimeout(() => {
+        meter.style.width = targetWidth;
+      }, 150);
+    });
+
+    if (!tabs.length || !cards.length) return;
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function () {
+        const filter = this.dataset.filter || 'all';
+
+        // Update active tab button styling
+        tabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+
+        // Filter and animate skill cards
+        cards.forEach((card, idx) => {
+          const category = card.dataset.category || '';
+          const matches = filter === 'all' || category === filter;
+
+          if (matches) {
+            card.style.display = 'flex';
+            setTimeout(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'scale(1) translateY(0)';
+            }, idx * 40);
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.92) translateY(10px)';
+            setTimeout(() => {
+              card.style.display = 'none';
+            }, 250);
+          }
+        });
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupSkills);
+  } else {
+    setupSkills();
+  }
+})();
 
 
 

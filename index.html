@@ -2,9 +2,23 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mehik Kumari | MERN Stack Developer</title>
+  <script>
+    (function() {
+      console.log('[Splash Redirect Check] Script executing in <head> of index.html...');
+      try {
+        var splashShown = sessionStorage.getItem('splashShown');
+        console.log('[Splash Redirect Check] sessionStorage.getItem("splashShown") =>', splashShown);
+        if (!splashShown || splashShown !== 'true') {
+          console.log('[Splash Redirect Check] splashShown is missing/false. Redirecting to splash.html now...');
+          window.location.replace('splash.html');
+        } else {
+          console.log('[Splash Redirect Check] splashShown is true. Proceeding with index.html load.');
+        }
+      } catch(e) {
+        console.error('[Splash Redirect Check] Error inspecting sessionStorage:', e);
+      }
+    })();
+  </script>
   <script>
     (function() {
       try {
@@ -17,11 +31,14 @@
       } catch(e) {}
     })();
   </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mehik Kumari | MERN Stack Developer</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap"
     rel="stylesheet">
   <script src="https://kit.fontawesome.com/4b8b1b1e7b.js" crossorigin="anonymous"></script>
 
@@ -36,16 +53,16 @@
   <!-- Animated Homepage Cyber Wallpaper Layer -->
   <div class="homepage-wallpaper-bg" aria-hidden="true"></div>
 
-  <!-- Full-screen Interactive Background Canvas -->
+  <!-- Unified 3D Perspective Plexus Background Canvas -->
   <canvas id="bg-canvas"></canvas>
   
-  <!-- Ambient Gradient Aurora Glowing Orbs -->
+  <!-- Unified Ambient Gradient Glowing Orbs -->
   <div class="ambient-glow-wrapper" aria-hidden="true">
-    <div class="glow-orb orb-1"></div>
-    <div class="glow-orb orb-2"></div>
-    <div class="glow-orb orb-3"></div>
-    <div class="glow-orb orb-4"></div>
+    <div class="ambient-glow-left"></div>
+    <div class="ambient-glow-right"></div>
   </div>
+
+
 
   <header>
     <div class="container">
@@ -115,8 +132,7 @@
             </p>
 
             <p class="hero-desc fade-in-delayed">
-              Computer Science graduate passionate about building responsive, user-friendly web applications using
-              modern technologies. Based in <strong>Karachi, Pakistan 🇵🇰</strong>
+              MERN Stack Developer &amp; UI/UX Designer crafting responsive, high-performance, and user-friendly web applications.
             </p>
 
             <div class="hero-buttons">
@@ -187,73 +203,55 @@
         <span class="section-tag"><i class="fas fa-user-astronaut"></i> Biography</span>
         <h2>About Me</h2>
       </div>
-      <div class="about-content">
-        <div class="about-bio-card fade-in">
-          <p class="about-bio-text">
-            I'm a <strong>Computer Science graduate</strong> from SZABIST Karachi with a passion for software development and user
-            experience design. Through internships and real-world projects, I've mastered building web
-            applications using the <strong>MERN Stack</strong>, while designing clean, intuitive interfaces that deliver delightful digital experiences.
+      <div class="about-modern-wrapper">
+        <!-- LEFT: Tilted Layered Photo Card Stack -->
+        <div class="about-photo-column fade-in-left">
+          <div class="photo-card-stack">
+            <!-- Background Layered Card (Rotated slightly) -->
+            <div class="photo-card-bg"></div>
+            <!-- Front Card with Real Profile Photo -->
+            <div class="photo-card-front">
+              <img src="Images/meee.jpg" alt="Mehik Kumari Profile Photo" class="about-profile-photo">
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Content Area (Narrative + Tech Stack + Download CV) -->
+        <div class="about-info-column fade-in-right">
+
+          <!-- Bio Narrative Text -->
+          <p class="about-narrative-text">
+            Computer Science graduate passionate about building responsive, user-friendly web applications using modern technologies. Through hands-on internships and real-world projects, I've mastered the <strong>MERN Stack</strong> &amp; <strong>UI/UX Design</strong> to craft clean, accessible, and high-performance digital experiences. Based in <strong>Karachi, Pakistan 🇵🇰</strong>
           </p>
-          
+
           <!-- Quick Tech Stack Pills -->
           <div class="about-tech-pills">
-            <span class="tech-pill"><i class="fab fa-react"></i> React.js</span>
-            <span class="tech-pill"><i class="fab fa-node-js"></i> Node.js</span>
-            <span class="tech-pill"><i class="fas fa-server"></i> Express.js</span>
-            <span class="tech-pill"><i class="fas fa-database"></i> MongoDB</span>
-            <!-- <span class="tech-pill"><i class="fab fa-figma"></i> Figma</span> -->
-            <span class="tech-pill"><i class="fab fa-js-square"></i> JavaScript</span>
-            <span class="tech-pill"><i class="fas fa-mobile-alt"></i> React Native</span>
+            <span class="tech-pill" data-tech="react"><i class="fab fa-react"></i> React.js</span>
+            <span class="tech-pill" data-tech="node"><i class="fab fa-node-js"></i> Node.js</span>
+            <span class="tech-pill" data-tech="express"><i class="fas fa-server"></i> Express.js</span>
+            <span class="tech-pill" data-tech="mongodb"><i class="fas fa-database"></i> MongoDB</span>
+            <span class="tech-pill" data-tech="javascript"><i class="fab fa-js-square"></i> JavaScript</span>
+            <span class="tech-pill" data-tech="react-native"><i class="fas fa-mobile-alt"></i> React Native</span>
           </div>
 
-          <!-- About Action Buttons: Download CV & Learn More -->
-          <div class="about-action-buttons">
-            <a href="Mehik_Kumari_Resume_SoftwareDev.pdf" class="btn-cv" download="Mehik_Kumari_Resume_SoftwareDev.pdf">
+          <!-- Download CV Action Button (Replaces Let's Talk) -->
+          <div class="about-cta-wrapper">
+            <a href="Mehik_Kumari_Resume_SoftwareDev.pdf" class="btn-cv hero-btn-main" download="Mehik_Kumari_Resume_SoftwareDev.pdf">
               <i class="fas fa-file-download"></i> Download CV
             </a>
-            <a href="#projects" class="btn-outline-about">
-              <i class="fas fa-layer-group"></i> Explore Projects
-            </a>
           </div>
         </div>
+      </div>
 
-        <div class="about-highlights">
-          <div class="highlight-item slide-in-left stagger-1">
-            <div class="highlight-icon">
-              <i class="fas fa-code"></i>
-            </div>
-            <div class="highlight-content">
-              <h3>Front-End Development</h3>
-              <p>Specializing in building interactive, accessible, and high-performance interfaces using modern frontend technologies like React.js, React Native, JavaScript (ES6+), HTML5, and CSS3.</p>
-            </div>
-          </div>
-
-          <div class="highlight-item fade-in stagger-2">
-            <div class="highlight-icon">
-              <i class="fas fa-paint-brush"></i>
-            </div>
-            <div class="highlight-content">
-              <h3>UI/UX &amp; Visual Design</h3>
-              <p>Transforming complex user flows into intuitive, visually appealing interfaces. Proficient in Adobe Illustrator, Figma wireframing, component design systems, and responsive UX architecture.</p>
-            </div>
-          </div>
-
-          <div class="highlight-item slide-in-right stagger-3">
-            <div class="highlight-icon">
-              <i class="fas fa-lightbulb"></i>
-            </div>
-            <div class="highlight-content">
-              <h3>Innovation &amp; Growth</h3>
-              <p>Constantly challenging myself with new frameworks, performance optimization techniques, and clean architecture principles to bridge the gap between imagination and engineering.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="about-mission fade-in-delayed">
-          <blockquote>
-            <i class="fas fa-quote-left quote-watermark"></i>
-            <p>"My goal is to create digital experiences that not only look beautiful but also solve real problems and make technology more accessible to everyone."</p>
-            <cite>— Mehik Kumari</cite>
+      <!-- Quote Card -->
+      <div class="about-mission fade-in-delayed" style="margin-top: 2rem;">
+        <blockquote>
+          <i class="fas fa-quote-left quote-watermark"></i>
+          <p>"My goal is to create digital experiences that not only look beautiful but also solve real problems and make technology more accessible to everyone."</p>
+          <cite>— Mehik Kumari</cite>
+        </blockquote>
+      </div>
+           
           </blockquote>
         </div>
       </div>
@@ -263,59 +261,41 @@
           <span class="section-tag"><i class="fas fa-graduation-cap"></i> Academic Background</span>
           <h2>Education</h2>
         </div>
-        <div class="education-timeline">
+        <div class="education-grid">
 
-          <div class="timeline-entry slide-in-left stagger-1">
-            <div class="timeline-icon"><i class="fas fa-university"></i></div>
-            <div class="timeline-content">
-              <div class="edu-card-header">
-                <h3>SZABIST University – Karachi</h3>
-                <span class="edu-degree">Bachelor of Science in Computer Science</span>
-              </div>
+          <div class="edu-card slide-in-left stagger-1">
+            <div class="edu-card-icon"><i class="fas fa-university"></i></div>
+            <div class="edu-card-body">
+              <h3>SZABIST University – Karachi</h3>
+              <span class="edu-degree">Bachelor of Science in Computer Science</span>
               <div class="edu-meta-row">
                 <span class="edu-year-badge"><i class="fas fa-calendar-alt"></i> 2022 – 2026</span>
                 <span class="edu-grade-badge grade-highlight"><i class="fas fa-star"></i> CGPA: 3.43 / 4.0</span>
               </div>
-              <ul class="edu-bullets">
-                <li><i class="fas fa-check-circle"></i> Focused on MERN Stack Development, Front-End Engineering, UI/UX Design &amp; HCI.</li>
-                <li><i class="fas fa-check-circle"></i> Developed scalable web applications &amp; competed in ZAB-E-FEST UI Competition.</li>
-              </ul>
             </div>
           </div>
 
-          <div class="timeline-entry fade-in stagger-2">
-            <div class="timeline-icon"><i class="fas fa-school"></i></div>
-            <div class="timeline-content">
-              <div class="edu-card-header">
-                <h3>Sindh Public Higher Secondary School – Ghotki</h3>
-                <span class="edu-degree">Intermediate (Pre-Engineering)</span>
-              </div>
+          <div class="edu-card fade-in stagger-2">
+            <div class="edu-card-icon"><i class="fas fa-school"></i></div>
+            <div class="edu-card-body">
+              <h3>Sindh Public Higher Secondary School – Ghotki</h3>
+              <span class="edu-degree">Intermediate (Pre-Engineering)</span>
               <div class="edu-meta-row">
                 <span class="edu-year-badge"><i class="fas fa-calendar-alt"></i> 2020 – 2022</span>
                 <span class="edu-grade-badge"><i class="fas fa-award"></i> Grade: 82% (A-1)</span>
               </div>
-              <ul class="edu-bullets">
-                <li><i class="fas fa-check-circle"></i> Mathematics, Physics, &amp; Computer Science foundations.</li>
-                <li><i class="fas fa-check-circle"></i> Active participant in tech quizzes &amp; creative poster design competitions.</li>
-              </ul>
             </div>
           </div>
 
-          <div class="timeline-entry slide-in-right stagger-3">
-            <div class="timeline-icon"><i class="fas fa-award"></i></div>
-            <div class="timeline-content">
-              <div class="edu-card-header">
-                <h3>Sindh Public Higher Secondary School – Ghotki</h3>
-                <span class="edu-degree">Matriculation (Science Group)</span>
-              </div>
+          <div class="edu-card slide-in-right stagger-3">
+            <div class="edu-card-icon"><i class="fas fa-award"></i></div>
+            <div class="edu-card-body">
+              <h3>Sindh Public Higher Secondary School – Ghotki</h3>
+              <span class="edu-degree">Matriculation (Science Group)</span>
               <div class="edu-meta-row">
                 <span class="edu-year-badge"><i class="fas fa-calendar-alt"></i> 2018 – 2020</span>
                 <span class="edu-grade-badge"><i class="fas fa-certificate"></i> Grade: 78.8% (A)</span>
               </div>
-              <ul class="edu-bullets">
-                <li><i class="fas fa-check-circle"></i> Computer Science &amp; analytical logic fundamentals.</li>
-                <li><i class="fas fa-check-circle"></i> Recognized for academic performance &amp; creative arts programs.</li>
-              </ul>
             </div>
           </div>
 
@@ -347,7 +327,7 @@
             </div>
           </div>
 
-          <div class="certificate-card fade-in-delayed cert-open" data-image="certificates\UI Development Certificate.png" data-title="UI Development Participant – ZAB-E-FEST'25">
+          <div class="certificate-card fade-in-delayed cert-open" data-image="certificates/UI Development Certificate.png" data-title="UI Development Participant – ZAB-E-FEST'25">
             <div class="cert-card-header">
               <div class="cert-icon-badge szabist-badge">
                 <i class="fas fa-trophy"></i>
@@ -524,12 +504,12 @@
               <li><i class="fas fa-check-circle"></i> Built reusable UI components and integrated RESTful APIs with team collaboration on GitHub.</li>
             </ul>
             <div class="work-exp-tech-pills">
-              <span class="exp-pill">MongoDB</span>
-              <span class="exp-pill">Express.js</span>
-              <span class="exp-pill">React.js</span>
-              <span class="exp-pill">Node.js</span>
-              <span class="exp-pill">REST APIs</span>
-              <span class="exp-pill">Git &amp; GitHub</span>
+              <span class="exp-pill"><i class="fas fa-database"></i> MongoDB</span>
+              <span class="exp-pill"><i class="fas fa-server"></i> Express.js</span>
+              <span class="exp-pill"><i class="fab fa-react"></i> React.js</span>
+              <span class="exp-pill"><i class="fab fa-node-js"></i> Node.js</span>
+              <span class="exp-pill"><i class="fas fa-network-wired"></i> REST APIs</span>
+              <span class="exp-pill"><i class="fab fa-github"></i> Git &amp; GitHub</span>
             </div>
           </div>
         </article>
@@ -555,11 +535,11 @@
               <li><i class="fas fa-check-circle"></i> Implemented interactive UI animations, smooth navigation, and cross-browser debugging.</li>
             </ul>
             <div class="work-exp-tech-pills">
-              <span class="exp-pill">HTML5</span>
-              <span class="exp-pill">CSS3</span>
-              <span class="exp-pill">JavaScript</span>
-              <span class="exp-pill">UI Animations</span>
-              <span class="exp-pill">Responsive Design</span>
+              <span class="exp-pill"><i class="fab fa-html5"></i> HTML5</span>
+              <span class="exp-pill"><i class="fab fa-css3-alt"></i> CSS3</span>
+              <span class="exp-pill"><i class="fab fa-js-square"></i> JavaScript</span>
+              <span class="exp-pill"><i class="fas fa-magic"></i> UI Animations</span>
+              <span class="exp-pill"><i class="fas fa-laptop-code"></i> Responsive Design</span>
             </div>
           </div>
         </article>
@@ -585,10 +565,10 @@
               <li><i class="fas fa-check-circle"></i> Optimized website performance, accessibility, and mobile layout compatibility.</li>
             </ul>
             <div class="work-exp-tech-pills">
-              <span class="exp-pill">Frontend Dev</span>
-              <span class="exp-pill">JavaScript</span>
-              <span class="exp-pill">CSS Flexbox/Grid</span>
-              <span class="exp-pill">UI/UX Layouts</span>
+              <span class="exp-pill"><i class="fas fa-code"></i> Frontend Dev</span>
+              <span class="exp-pill"><i class="fab fa-js-square"></i> JavaScript</span>
+              <span class="exp-pill"><i class="fab fa-css3-alt"></i> CSS Flexbox/Grid</span>
+              <span class="exp-pill"><i class="fas fa-layer-group"></i> UI/UX Layouts</span>
             </div>
           </div>
         </article>
@@ -739,6 +719,18 @@
         <!-- UI/UX DESIGN SKILLS -->
         <div class="modern-skill-card" data-category="design">
           <div class="skill-card-top">
+            <div class="skill-icon-badge figma-bg"><i class="fab fa-figma"></i></div>
+            <div class="skill-info">
+              <h4>Figma &amp; UI Prototyping</h4>
+            </div>
+          </div>
+          <div class="skill-meter-track">
+            <div class="skill-meter-fill" data-width="90%"></div>
+          </div>
+        </div>
+
+        <div class="modern-skill-card" data-category="design">
+          <div class="skill-card-top">
             <div class="skill-icon-badge illustrator-bg"><i class="fas fa-pen-nib"></i></div>
             <div class="skill-info">
               <h4>Adobe Illustrator &amp; Visual Design</h4>
@@ -823,7 +815,7 @@
         <div class="modern-project-card fade-in" data-category="fullstack" style="animation-delay:0.05s;">
           <div class="project-img-container">
             <span class="project-category-badge featured-badge"><i class="fas fa-star"></i> Featured FYP</span>
-            <img src="Images/careermap-project.png" alt="CareerMap project preview" class="project-card-img">
+            <img src="Images/careermap-project.png" alt="CareerMap project preview" class="project-card-img" loading="lazy">
             <div class="project-img-overlay">
               <a href="https://career-map-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" class="overlay-btn">
                 <i class="fas fa-external-link-alt"></i> Live Demo
@@ -851,7 +843,7 @@
         <div class="modern-project-card fade-in-delayed" data-category="mobile" style="animation-delay:0.1s;">
           <div class="project-img-container">
             <span class="project-category-badge mobile-badge"><i class="fas fa-mobile-alt"></i> Mobile App</span>
-            <img src="Images/bookworm project image.jpg" alt="Bookworm project preview" class="project-card-img">
+            <img src="Images/bookworm project image.jpg" alt="Bookworm project preview" class="project-card-img" loading="lazy">
             <div class="project-img-overlay">
               <a href="https://expo.dev/accounts/mahek_nankani/projects/BookWorm/builds/42547021-8553-48f8-80ff-a59c8c8a6e93" target="_blank" rel="noopener noreferrer" class="overlay-btn" style="background: linear-gradient(135deg, #10b981, #059669); border-color: #34d399; box-shadow: 0 4px 20px rgba(16, 185, 129, 0.5);">
                 <i class="fab fa-android"></i> Download APK
@@ -879,7 +871,7 @@
         <div class="modern-project-card fade-in" data-category="mobile" style="animation-delay:0.15s;">
           <div class="project-img-container">
             <span class="project-category-badge mobile-badge"><i class="fas fa-shopping-bag"></i> E-Commerce</span>
-            <img src="Images/ecomerce.jpeg" alt="E-Commerce App preview" class="project-card-img">
+            <img src="Images/ecomerce.jpeg" alt="E-Commerce App preview" class="project-card-img" loading="lazy">
             <div class="project-img-overlay">
               <span class="overlay-tag"><i class="fas fa-shopping-cart"></i> Mobile Shopping</span>
             </div>
@@ -904,7 +896,7 @@
         <div class="modern-project-card slide-in-left" data-category="design" style="animation-delay:0.2s;">
           <div class="project-img-container">
             <span class="project-category-badge design-badge"><i class="fas fa-palette"></i> UI/UX Design</span>
-            <img src="Images/uiux.webp" alt="Home Service App UI/UX preview" class="project-card-img">
+            <img src="Images/uiux.webp" alt="Home Service App UI/UX preview" class="project-card-img" loading="lazy">
             <div class="project-img-overlay">
               <span class="overlay-tag"><i class="fas fa-paint-brush"></i> Branding &amp; UI</span>
             </div>
@@ -929,7 +921,7 @@
         <div class="modern-project-card fade-in-right" data-category="ai-systems" style="animation-delay:0.25s;">
           <div class="project-img-container">
             <span class="project-category-badge ai-badge"><i class="fas fa-brain"></i> AI &amp; ML</span>
-            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Weather Prediction System" class="project-card-img">
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Weather Prediction System" class="project-card-img" loading="lazy">
             <div class="project-img-overlay">
               <span class="overlay-tag"><i class="fas fa-cloud-sun-rain"></i> Machine Learning</span>
             </div>
@@ -954,7 +946,7 @@
         <div class="modern-project-card slide-in-bottom" data-category="ai-systems" style="animation-delay:0.3s;">
           <div class="project-img-container">
             <span class="project-category-badge system-badge"><i class="fas fa-network-wired"></i> Network System</span>
-            <img src="Images/cisco-image.webp" alt="SZABIST Campus Network preview" class="project-card-img">
+            <img src="Images/cisco-image.webp" alt="SZABIST Campus Network preview" class="project-card-img" loading="lazy">
             <div class="project-img-overlay">
               <span class="overlay-tag"><i class="fas fa-server"></i> Packet Tracer</span>
             </div>
@@ -979,7 +971,7 @@
         <div class="modern-project-card fade-in-delayed" data-category="frontend" style="animation-delay:0.35s;">
           <div class="project-img-container">
             <span class="project-category-badge web-badge"><i class="fas fa-coffee"></i> Web App</span>
-            <img src="Images/coffee-website.jpg" alt="Coffee Website preview" class="project-card-img">
+            <img src="Images/coffee-website.jpg" alt="Coffee Website preview" class="project-card-img" loading="lazy">
             <div class="project-img-overlay">
               <span class="overlay-tag"><i class="fas fa-mug-hot"></i> Modern UI</span>
             </div>
@@ -1004,7 +996,7 @@
         <div class="modern-project-card fade-in" data-category="frontend" style="animation-delay:0.4s;">
           <div class="project-img-container">
             <span class="project-category-badge web-badge"><i class="fas fa-comments"></i> Interactive</span>
-            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80" alt="Chatbot preview" class="project-card-img">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80" alt="Chatbot preview" class="project-card-img" loading="lazy">
             <div class="project-img-overlay">
               <span class="overlay-tag"><i class="fas fa-comment-dots"></i> Conversation UI</span>
             </div>
@@ -1029,7 +1021,7 @@
         <div class="modern-project-card slide-in-bottom" data-category="frontend" style="animation-delay:0.45s;">
           <div class="project-img-container">
             <span class="project-category-badge web-badge"><i class="fas fa-calculator"></i> Utility</span>
-            <img src="Images/Age-calculator.png" alt="Age Calculator preview" class="project-card-img">
+            <img src="Images/Age-calculator.png" alt="Age Calculator preview" class="project-card-img" loading="lazy">
             <div class="project-img-overlay">
               <span class="overlay-tag"><i class="fas fa-calendar-check"></i> Date Logic</span>
             </div>
@@ -1179,77 +1171,78 @@
   <script>
     (function(){
       const modal = document.getElementById('cert-modal');
+      if (!modal) return;
       const modalImg = document.getElementById('cert-modal-img');
       const modalIframe = document.getElementById('cert-modal-iframe');
       const modalPdfBtn = document.getElementById('cert-modal-pdf-btn');
       const modalTitle = document.getElementById('cert-title');
-      const closeBtn = document.querySelector('.cert-modal-close');
+      const closeBtn = modal.querySelector('.cert-modal-close');
 
       function openModal(src, title){
+        if (!src) return;
         const isPdf = src.toLowerCase().endsWith('.pdf');
 
         if (isPdf) {
-          modalImg.style.display = 'none';
-          modalIframe.style.display = 'block';
-          modalIframe.src = src;
+          if (modalImg) modalImg.style.display = 'none';
+          if (modalIframe) {
+            modalIframe.style.display = 'block';
+            modalIframe.src = src;
+          }
           if (modalPdfBtn) {
             modalPdfBtn.href = src;
             modalPdfBtn.style.display = 'inline-flex';
           }
         } else {
-          modalIframe.style.display = 'none';
-          modalIframe.src = '';
-          modalImg.style.display = 'block';
-          modalImg.src = src;
-          modalImg.alt = title;
+          if (modalIframe) {
+            modalIframe.style.display = 'none';
+            modalIframe.src = '';
+          }
+          if (modalImg) {
+            modalImg.style.display = 'block';
+            modalImg.src = src;
+            modalImg.alt = title;
+          }
           if (modalPdfBtn) modalPdfBtn.style.display = 'none';
         }
 
-        modalTitle.textContent = title;
+        if (modalTitle) modalTitle.textContent = title;
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
-        setTimeout(()=> closeBtn.focus(), 120);
+        if (closeBtn) setTimeout(() => closeBtn.focus(), 120);
       }
 
       function closeModal(){
         modal.setAttribute('aria-hidden', 'true');
-        modalImg.src = '';
-        modalIframe.src = '';
-        modalTitle.textContent = '';
+        if (modalImg) modalImg.src = '';
+        if (modalIframe) modalIframe.src = '';
+        if (modalTitle) modalTitle.textContent = '';
         document.body.style.overflow = '';
       }
 
-      document.querySelectorAll('.cert-open').forEach(btn => {
-        btn.addEventListener('click', e => {
+      document.addEventListener('click', function(e) {
+        const cardElem = e.target.closest('.certificate-card, .cert-open, .cert-cta-btn');
+        if (!cardElem) return;
+        const targetCard = cardElem.closest('[data-image]') || cardElem;
+        const src = targetCard.getAttribute('data-image');
+        if (src) {
           e.preventDefault();
-          const img = btn.getAttribute('data-image');
-          const title = btn.getAttribute('data-title') || btn.querySelector('h3')?.textContent?.trim() || btn.textContent.trim();
-          openModal(img, title);
-        });
+          const title = targetCard.getAttribute('data-title') || targetCard.querySelector('h3')?.textContent?.trim() || 'Certificate';
+          openModal(src, title);
+        }
       });
 
-      closeBtn.addEventListener('click', closeModal);
-
-      // close when clicking backdrop
-      document.querySelectorAll('.cert-modal-backdrop').forEach(b => b.addEventListener('click', closeModal));
-
-      // close on ESC
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      document.querySelectorAll('.cert-modal-backdrop, [data-close="true"]').forEach(b => b.addEventListener('click', closeModal));
       document.addEventListener('keydown', (e) => {
         if(e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeModal();
       });
-
-      // stop clicks inside panel from closing
       document.querySelectorAll('.cert-modal-panel').forEach(panel => panel.addEventListener('click', e => e.stopPropagation()));
-
-      // prevent focus from leaving modal when open
-      document.addEventListener('focus', function(event){
-        if(modal.getAttribute('aria-hidden') === 'false' && !modal.contains(event.target)){
-          event.stopPropagation();
-          closeBtn.focus();
-        }
-      }, true);
     })();
   </script>
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top-btn" aria-label="Scroll to top of page">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 </body>
 
 </html>
