@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Cascade child cards with ~0.1s stagger delay
                 const childCards = entry.target.querySelectorAll(
-                    '.project-card, .modern-project-card, .skill-card, .edu-card, .certificate-badge, .timeline-entry, .contact-info-card, .skill, .stagger-child'
+                    '.project-card, .modern-project-card, .skill-card, .modern-skill-card, .edu-card, .certificate-badge, .timeline-entry, .contact-info-card, .skill, .stagger-child'
                 );
                 childCards.forEach((child, index) => {
                     child.style.transitionDelay = `${(index * 0.1).toFixed(2)}s`;
@@ -79,9 +79,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }, sectionObserverOptions);
 
     const sectionsToObserve = document.querySelectorAll(
-        '#about, #skills, #experience, #projects, #contact, section, .reveal-on-scroll, .fade-in, .fade-in-delayed, .fade-in-right, .slide-in-left, .slide-in-right, .slide-in-bottom, .skill, .project-card, .edu-card, .certificate-badge, .modern-project-card, .contact-info-card, .timeline-entry'
+        '#about, #skills, #experience, #projects, #contact, section, .section-header-wrapper, .about-modern-wrapper, .skills-category-group, .education-grid, .work-experience-timeline, .certificates-list, .contact-modern-grid, .reveal-on-scroll, .fade-in, .fade-in-delayed, .fade-in-right, .slide-in-left, .slide-in-right, .slide-in-bottom, .skill, .project-card, .edu-card, .certificate-badge, .modern-project-card, .contact-info-card, .timeline-entry'
     );
     sectionsToObserve.forEach(sec => sectionObserver.observe(sec));
+
+    // Immediate reveal for above-the-fold hero content (no waiting for scroll)
+    document.querySelectorAll('.hero, .hero-content, .hero-text, .hero-visual, header, .hero-greeting-tag, .hero-role, .hero-specialization, .hero-desc, .hero-buttons, .hero-stats').forEach(el => {
+        el.classList.add('animate', 'is-visible');
+    });
 
     // ── Back to Top Button (Show > 300px, Smooth Scroll) ─────────────────
     const backToTopBtns = document.querySelectorAll('#back-to-top, #backToTop, .back-to-top, .back-to-top-btn');
@@ -267,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ── Starting Load Animation for Hero Name ─────────────────
     const nameEl = document.getElementById('hero-name-animated') || document.querySelector('.hero-text h1 span');
     if (nameEl) {
-        const targetName = nameEl.textContent.trim() || "Mahek Nankani";
+        const targetName = nameEl.textContent.trim() || "Mehik Kumari";
         nameEl.textContent = "";
         nameEl.classList.add('name-typing-active');
 
@@ -285,46 +290,42 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(typeName, 250);
     }
 
-    // Dynamic Typing animation for hero specialization text
-    const typewriterEl = document.getElementById('hero-typewriter') || document.querySelector('.hero-typewriter-text');
-    if (typewriterEl) {
+    // ── 3. Hero Carousel Transition (Smooth vertical slide & fade carousel) ───
+    const carouselEl = document.getElementById('hero-typewriter') || document.querySelector('.hero-specialization-anim');
+    if (carouselEl) {
         const phrases = [
-            "MERN Stack",
-            "UI/UX Design",
+            "MERN Stack Development",
+            "UI/UX Design & Prototyping",
             "Full-Stack Web Dev",
-            "React & React Native"
+            "React & React Native Apps",
+            "Modern Interactive Interfaces"
         ];
-        let phraseIdx = 0;
-        let charIdx = 0;
-        let isDeleting = false;
-        let typingSpeed = 90;
+        let currentIdx = 0;
+        carouselEl.textContent = phrases[0];
 
-        function typeLoop() {
-            const currentPhrase = phrases[phraseIdx];
-
-            if (isDeleting) {
-                typewriterEl.textContent = currentPhrase.substring(0, charIdx - 1);
-                charIdx--;
-                typingSpeed = 45;
-            } else {
-                typewriterEl.textContent = currentPhrase.substring(0, charIdx + 1);
-                charIdx++;
-                typingSpeed = 90;
-            }
-
-            if (!isDeleting && charIdx === currentPhrase.length) {
-                isDeleting = true;
-                typingSpeed = 1800; // Pause at full word
-            } else if (isDeleting && charIdx === 0) {
-                isDeleting = false;
-                phraseIdx = (phraseIdx + 1) % phrases.length;
-                typingSpeed = 400; // Pause before typing next
-            }
-
-            setTimeout(typeLoop, typingSpeed);
+        function rotateHeroCarousel() {
+            carouselEl.classList.add('hero-carousel-slide-out');
+            
+            setTimeout(() => {
+                currentIdx = (currentIdx + 1) % phrases.length;
+                carouselEl.textContent = phrases[currentIdx];
+                carouselEl.classList.remove('hero-carousel-slide-out');
+                carouselEl.classList.add('hero-carousel-slide-in-prep');
+                
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        carouselEl.classList.remove('hero-carousel-slide-in-prep');
+                        carouselEl.classList.add('hero-carousel-slide-in');
+                        
+                        setTimeout(() => {
+                            carouselEl.classList.remove('hero-carousel-slide-in');
+                        }, 500);
+                    });
+                });
+            }, 460);
         }
 
-        setTimeout(typeLoop, 800);
+        setInterval(rotateHeroCarousel, 3000);
     }
 
     // Parallax effect for hero section
@@ -607,38 +608,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function animateMeters() {
     skillCards.forEach(card => {
-      if (card.style.display !== 'none') {
+      if (!card.classList.contains('is-hidden') && card.style.display !== 'none') {
         const fill = card.querySelector('.skill-meter-fill');
         if (fill) {
-          const targetWidth = fill.dataset.width || '80%';
+          const targetWidth = fill.dataset.width || fill.getAttribute('data-width') || '85%';
           fill.style.width = '0%';
           setTimeout(() => {
             fill.style.width = targetWidth;
-          }, 100);
+          }, 80);
         }
       }
     });
   }
 
+  // Initial meter animation
+  setTimeout(animateMeters, 200);
+
   if (tabBtns.length && skillCards.length) {
     tabBtns.forEach(btn => {
-      btn.addEventListener('click', function () {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
         tabBtns.forEach(b => b.classList.remove('active'));
         this.classList.add('active');
 
-        const filter = this.dataset.filter;
+        const filter = this.dataset.filter || this.getAttribute('data-filter') || 'all';
 
         skillCards.forEach(card => {
-          const category = card.dataset.category;
-          if (filter === 'all' || category === filter) {
+          const category = card.dataset.category || card.getAttribute('data-category') || '';
+          if (filter === 'all' || category === filter || category.split(/\s+/).includes(filter)) {
+            card.classList.remove('is-hidden');
+            card.classList.add('animate', 'is-visible');
             card.style.display = 'flex';
             card.style.opacity = '0';
-            card.style.transform = 'translateY(10px)';
+            card.style.transform = 'translateY(12px)';
             setTimeout(() => {
               card.style.opacity = '1';
               card.style.transform = 'translateY(0)';
-            }, 50);
+            }, 40);
           } else {
+            card.classList.add('is-hidden');
             card.style.display = 'none';
           }
         });
@@ -663,9 +671,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-// ── Interactive Projects Category Filter Handler ──────────────────────────
+// ── 2. Interactive Projects Category Filter with Staggered Reveal ────────
 document.addEventListener('DOMContentLoaded', function () {
-  const projectBtns = document.querySelectorAll('.projects-tab-btn');
+  const projectBtns = document.querySelectorAll('.projects-tab-btn:not(.btn-search-trigger)');
   const projectCards = document.querySelectorAll('.modern-project-card');
 
   if (projectBtns.length && projectCards.length) {
@@ -675,17 +683,21 @@ document.addEventListener('DOMContentLoaded', function () {
         this.classList.add('active');
 
         const filter = this.dataset.filter;
+        let visibleIdx = 0;
 
         projectCards.forEach(card => {
-          const category = card.dataset.category;
-          if (filter === 'all' || category === filter) {
+          const category = card.dataset.category || '';
+          if (filter === 'all' || category === filter || category.split(/\s+/).includes(filter)) {
             card.style.display = 'flex';
             card.style.opacity = '0';
-            card.style.transform = 'translateY(15px)';
+            card.style.transform = 'translateY(24px)';
+            const delay = visibleIdx * 65;
+            visibleIdx++;
             setTimeout(() => {
+              card.style.transition = 'opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
               card.style.opacity = '1';
               card.style.transform = 'translateY(0)';
-            }, 50);
+            }, delay + 20);
           } else {
             card.style.display = 'none';
           }
@@ -841,69 +853,474 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 })();
 
-// ── Interactive Skills Category Filter Tabs & Animated Meters ───────────────
-(function initSkillsFilter() {
-  function setupSkills() {
-    const tabs = document.querySelectorAll('.skills-tab-btn');
-    const cards = document.querySelectorAll('.modern-skill-card');
-    const meters = document.querySelectorAll('.skill-meter-fill');
+// ── 8. Slide-in Modal (Search & Project Quick View) ─────────────────────
+(function initSlideInModal() {
+  function setupModal() {
+    const modal = document.getElementById('slide-in-modal');
+    if (!modal) return;
 
-    // 1. Animate meter fills immediately on load
-    meters.forEach(meter => {
-      const targetWidth = meter.dataset.width || '85%';
-      setTimeout(() => {
-        meter.style.width = targetWidth;
-      }, 150);
-    });
+    const backdrop = document.getElementById('modalBackdrop');
+    const closeBtn = document.getElementById('modalCloseBtn');
+    const searchInput = document.getElementById('projectSearchInput');
+    const dynamicContent = document.getElementById('modalDynamicContent');
+    const openSearchBtn = document.getElementById('openProjectSearch');
 
-    if (!tabs.length || !cards.length) return;
+    function getProjectsData() {
+      const cards = document.querySelectorAll('.modern-project-card');
+      const data = [];
+      cards.forEach((card, index) => {
+        const title = card.querySelector('h3')?.textContent?.trim() || `Project ${index + 1}`;
+        const desc = card.querySelector('p')?.textContent?.trim() || '';
+        const img = card.querySelector('.project-card-img')?.src || '';
+        const badge = card.querySelector('.project-category-badge')?.outerHTML || '';
+        const pills = Array.from(card.querySelectorAll('.tech-pill')).map(p => p.outerHTML).join(' ');
+        const link = card.querySelector('.btn-project-link:not(.disabled-link), .overlay-btn:not(.overlay-btn-quickview)')?.href || '';
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', function () {
-        const filter = this.dataset.filter || 'all';
+        data.push({ index, title, desc, img, badge, pills, link, category: card.dataset.category || '' });
+      });
+      return data;
+    }
 
-        // Update active tab button styling
-        tabs.forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
+    function renderSearchResults(query = '') {
+      if (!dynamicContent) return;
+      const projects = getProjectsData();
+      const q = query.toLowerCase().trim();
+      const filtered = projects.filter(p => 
+        !q || 
+        p.title.toLowerCase().includes(q) || 
+        p.desc.toLowerCase().includes(q) || 
+        p.category.toLowerCase().includes(q) ||
+        p.pills.toLowerCase().includes(q)
+      );
 
-        // Filter and animate skill cards
-        cards.forEach((card, idx) => {
-          const category = card.dataset.category || '';
-          const matches = filter === 'all' || category === filter;
+      if (filtered.length === 0) {
+        dynamicContent.innerHTML = `
+          <div style="text-align: center; padding: 2.5rem 1rem; color: #94a3b8;">
+            <i class="fas fa-search" style="font-size: 2.5rem; margin-bottom: 0.8rem; opacity: 0.4;"></i>
+            <p style="font-size: 1rem;">No projects found matching "${query}".</p>
+          </div>
+        `;
+        return;
+      }
 
-          if (matches) {
-            card.style.display = 'flex';
-            setTimeout(() => {
-              card.style.opacity = '1';
-              card.style.transform = 'scale(1) translateY(0)';
-            }, idx * 40);
-          } else {
-            card.style.opacity = '0';
-            card.style.transform = 'scale(0.92) translateY(10px)';
-            setTimeout(() => {
-              card.style.display = 'none';
-            }, 250);
-          }
+      dynamicContent.innerHTML = `
+        <div class="modal-results-list">
+          ${filtered.map(p => `
+            <div class="modal-result-item" data-project-idx="${p.index}">
+              <img src="${p.img}" alt="${p.title}" class="modal-result-thumb">
+              <div class="modal-result-info" style="flex: 1;">
+                <h4>${p.title}</h4>
+                <p>${p.desc}</p>
+                <div style="margin-top: 0.35rem; display: flex; flex-wrap: wrap; gap: 4px;">
+                  ${p.pills}
+                </div>
+              </div>
+              <button class="btn-outline btn-small" style="padding: 0.4rem 0.75rem; font-size: 0.75rem; border-radius: 8px;">
+                View <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          `).join('')}
+        </div>
+      `;
+
+      dynamicContent.querySelectorAll('.modal-result-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const idx = parseInt(item.dataset.projectIdx, 10);
+          renderQuickView(projects[idx]);
         });
       });
+    }
+
+    function renderQuickView(p) {
+      if (!p || !dynamicContent) return;
+      dynamicContent.innerHTML = `
+        <div class="modal-quickview-content">
+          <button id="modalBackToSearch" class="btn-outline btn-small" style="align-self: flex-start; padding: 0.35rem 0.75rem; font-size: 0.8rem; margin-bottom: 0.5rem; border-radius: 8px;">
+            <i class="fas fa-arrow-left"></i> Back to search
+          </button>
+          <div style="position: relative; overflow: hidden; border-radius: 14px;">
+            <img src="${p.img}" alt="${p.title}" class="modal-quickview-img">
+            <div style="position: absolute; top: 12px; left: 12px;">${p.badge}</div>
+          </div>
+          <div>
+            <h3 style="font-size: 1.4rem; color: #fff; margin-bottom: 0.5rem;">${p.title}</h3>
+            <p style="color: #cbd5e1; line-height: 1.6; font-size: 0.95rem; margin-bottom: 1rem;">${p.desc}</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem;">
+              ${p.pills}
+            </div>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              ${p.link ? `<a href="${p.link}" target="_blank" rel="noopener noreferrer" class="btn-filled hero-btn-main" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;"><i class="fas fa-external-link-alt"></i> Open Project</a>` : ''}
+              <button id="modalCloseViewBtn" class="btn-outline" style="padding: 0.6rem 1.2rem; font-size: 0.85rem; border-radius: 8px;">Close</button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const backBtn = document.getElementById('modalBackToSearch');
+      if (backBtn) {
+        backBtn.addEventListener('click', () => {
+          renderSearchResults(searchInput ? searchInput.value : '');
+        });
+      }
+      const closeViewBtn = document.getElementById('modalCloseViewBtn');
+      if (closeViewBtn) {
+        closeViewBtn.addEventListener('click', closeModal);
+      }
+    }
+
+    function openModal(initialProjectIdx = null) {
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+
+      if (initialProjectIdx !== null) {
+        const projects = getProjectsData();
+        renderQuickView(projects[initialProjectIdx]);
+      } else {
+        if (searchInput) searchInput.value = '';
+        renderSearchResults('');
+        if (searchInput) setTimeout(() => searchInput.focus(), 150);
+      }
+    }
+
+    function closeModal() {
+      modal.classList.add('closing');
+      setTimeout(() => {
+        modal.classList.remove('open', 'closing');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }, 280);
+    }
+
+    if (openSearchBtn) openSearchBtn.addEventListener('click', () => openModal());
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (backdrop) backdrop.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) {
+        closeModal();
+      }
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        renderSearchResults(e.target.value);
+      });
+    }
+
+    } if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupModal);
+  } else {
+    setupModal();
+  }
+})();
+
+// ── ADVANCED ENGINES: HERO SLIDER, PARALLAX BACKGROUND & 3D TILT/FLIP ─────
+
+// 1. ANIMATED HERO SLIDER CONTROLLER
+(function initHeroSlider() {
+  const sliderWrapper = document.getElementById('heroSlidesWrapper');
+  if (!sliderWrapper) return;
+
+  const slides = sliderWrapper.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-slider-dot');
+  const prevBtn = document.getElementById('heroSliderPrev');
+  const nextBtn = document.getElementById('heroSliderNext');
+  const progressBar = document.getElementById('heroSliderTimerProgress');
+  const heroBadges = document.querySelectorAll('.hero-badge');
+
+  if (!slides.length) return;
+
+  let currentSlide = 0;
+  let slideInterval = null;
+  const slideDuration = 5500; // 5.5s per slide
+  let progressStart = 0;
+  let progressRaf = null;
+
+  const badgePresets = [
+    [
+      { html: '<span class="badge-dot badge-dot-green"></span> Open to Work' },
+      { html: '<i class="fas fa-map-marker-alt badge-icon-loc"></i> Karachi, PK' },
+      { html: '<i class="fas fa-briefcase"></i> Available for Opportunities' }
+    ],
+    [
+      { html: '<span class="badge-dot badge-dot-green"></span> Full-Stack Development' },
+      { html: '<i class="fab fa-react"></i> Frontend' },
+      { html: '<i class="fas fa-server"></i> Backend & APIs' }
+    ],
+    [
+      { html: '<span class="badge-dot badge-dot-green"></span> MERN Stack' },
+      { html: '<i class="fab fa-react"></i> React.js' },
+      { html: '<i class="fab fa-node-js badge-icon-mern"></i> Node.js' }
+    ],
+    [
+      { html: '<span class="badge-dot badge-dot-green"></span> Mobile Apps' },
+      { html: '<i class="fab fa-react" style="color:#61dafb;"></i> React Native' },
+      { html: '<i class="fab fa-android" style="color:#22c55e;"></i> Android &amp; iOS' }
+    ],
+    [
+      { html: '<span class="badge-dot badge-dot-green"></span> Available for UI/UX' },
+      { html: '<i class="fab fa-figma" style="color:#a855f7;"></i> Figma' },
+      { html: '<i class="fas fa-layer-group" style="color:#38bdf8;"></i> Design Systems' }
+    ]
+  ];
+
+  function updateHeroBadges(index) {
+    if (!heroBadges.length || !badgePresets[index]) return;
+    heroBadges.forEach((badge, bIdx) => {
+      if (badgePresets[index][bIdx]) {
+        badge.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        badge.style.opacity = '0';
+        badge.style.transform = 'translateY(6px)';
+        setTimeout(() => {
+          badge.innerHTML = badgePresets[index][bIdx].html;
+          badge.style.opacity = '1';
+          badge.style.transform = 'translateY(0)';
+        }, 300);
+      }
+    });
+  }
+
+  function goToSlide(newIdx, direction = 'next') {
+    if (newIdx === currentSlide) return;
+    const oldSlide = slides[currentSlide];
+    const targetSlide = slides[newIdx];
+
+    oldSlide.classList.remove('active');
+    oldSlide.classList.add(direction === 'next' ? 'slide-out-left' : 'slide-out-right');
+
+    setTimeout(() => {
+      oldSlide.classList.remove('slide-out-left', 'slide-out-right');
+    }, 550);
+
+    targetSlide.classList.add('active');
+
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === newIdx);
+    });
+
+    currentSlide = newIdx;
+    updateHeroBadges(newIdx);
+    resetTimer();
+  }
+
+  function nextSlide() {
+    const next = (currentSlide + 1) % slides.length;
+    goToSlide(next, 'next');
+  }
+
+  function prevSlide() {
+    const prev = (currentSlide - 1 + slides.length) % slides.length;
+    goToSlide(prev, 'prev');
+  }
+
+  function updateProgress() {
+    const elapsed = Date.now() - progressStart;
+    const percent = Math.min((elapsed / slideDuration) * 100, 100);
+    if (progressBar) progressBar.style.width = percent + '%';
+
+    if (elapsed < slideDuration) {
+      progressRaf = requestAnimationFrame(updateProgress);
+    }
+  }
+
+  function resetTimer() {
+    if (slideInterval) clearInterval(slideInterval);
+    if (progressRaf) cancelAnimationFrame(progressRaf);
+    if (progressBar) progressBar.style.width = '0%';
+    progressStart = Date.now();
+    updateProgress();
+    slideInterval = setInterval(nextSlide, slideDuration);
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', function () {
+      const target = parseInt(this.dataset.slideTarget, 10);
+      goToSlide(target, target > currentSlide ? 'next' : 'prev');
+    });
+  });
+
+  if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+  if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+
+  // Pause on hover
+  sliderWrapper.addEventListener('mouseenter', () => {
+    if (slideInterval) clearInterval(slideInterval);
+    if (progressRaf) cancelAnimationFrame(progressRaf);
+  });
+  sliderWrapper.addEventListener('mouseleave', resetTimer);
+
+  resetTimer();
+})();
+
+// 2. INTERACTIVE PARALLAX BACKGROUND (Mouse & Scroll Multi-layer)
+(function initParallaxBackground() {
+  const canvas = document.getElementById('bg-canvas');
+  const glowLeft = document.querySelector('.ambient-glow-left');
+  const glowRight = document.querySelector('.ambient-glow-right');
+  const heroVisual = document.querySelector('.hero-visual');
+
+  let mouseX = 0, mouseY = 0;
+  let targetMouseX = 0, targetMouseY = 0;
+  let isTicking = false;
+
+  window.addEventListener('mousemove', (e) => {
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    targetMouseX = (e.clientX - centerX) / centerX;
+    targetMouseY = (e.clientY - centerY) / centerY;
+
+    if (!isTicking) {
+      requestAnimationFrame(updateMouseParallax);
+      isTicking = true;
+    }
+  }, { passive: true });
+
+  function updateMouseParallax() {
+    mouseX += (targetMouseX - mouseX) * 0.08;
+    mouseY += (targetMouseY - mouseY) * 0.08;
+
+    if (canvas) {
+      canvas.style.transform = `translate3d(${(mouseX * -14).toFixed(1)}px, ${(mouseY * -14).toFixed(1)}px, 0)`;
+    }
+    if (glowLeft) {
+      glowLeft.style.transform = `translate3d(${(mouseX * 28).toFixed(1)}px, ${(mouseY * 24).toFixed(1)}px, 0)`;
+    }
+    if (glowRight) {
+      glowRight.style.transform = `translate3d(${(mouseX * -32).toFixed(1)}px, ${(mouseY * -28).toFixed(1)}px, 0)`;
+    }
+    if (heroVisual && window.scrollY < 600) {
+      heroVisual.style.transform = `translate3d(${(mouseX * 12).toFixed(1)}px, ${(mouseY * 12).toFixed(1)}px, 0)`;
+    }
+
+    if (Math.abs(targetMouseX - mouseX) > 0.001 || Math.abs(targetMouseY - mouseY) > 0.001) {
+      requestAnimationFrame(updateMouseParallax);
+    } else {
+      isTicking = false;
+    }
+  }
+
+  // Scroll parallax
+  window.addEventListener('scroll', () => {
+    const scrollY = window.pageYOffset;
+    if (canvas) {
+      canvas.style.top = `${(scrollY * 0.2).toFixed(1)}px`;
+    }
+    if (glowLeft) {
+      glowLeft.style.top = `${(15 + scrollY * 0.03).toFixed(1)}%`;
+    }
+    if (glowRight) {
+      glowRight.style.bottom = `${(20 - scrollY * 0.03).toFixed(1)}%`;
+    }
+  }, { passive: true });
+})();
+
+// 3. 3D TILT & FLIP CARD CONTROLLER
+(function initTiltAndFlipCards() {
+  const projectFeatures = {
+    'CareerMap': ['Career assessment and personalized career recommendations', 'University and program search with filters', 'Mentor chat, marketplace and payment workflow'],
+    'Bookworm Mobile App': ['JWT authentication and personalized reading library', 'Cloudinary eBook uploads and in-app PDF reader', 'Page progress tracking, reviews and social feed'],
+    'E-Commerce App': ['React Native product browsing and catalog screens', 'Shopping cart and checkout user flows', 'Mobile-first navigation and responsive layouts'],
+    'Home Service App UI/UX': ['Service discovery and booking screen designs', 'Consistent visual identity, icons and typography', 'Mobile interface flows and reusable design elements'],
+    'Weather Prediction System': ['Weather classification with MLP, KNN and Decision Tree', 'Model comparison and prediction workflow', 'Weather forecasting for multiple cities'],
+    'Savor 3D Website': ['Responsive restaurant menu and landing experience', 'Interactive 3D visual elements', 'React, Vite and Tailwind CSS frontend'],
+    'Brewly & Co.': ['Coffee catalog, customization and filtering', 'Shopping cart, wishlist and subscription flow', 'Admin management and test-mode Stripe checkout'],
+    'Interactive Chatbot': ['Interactive conversational chat interface', 'Responsive message input and chat history display', 'User-focused chatbot interaction design'],
+    'Dynamic Age Calculator': ['Date-of-birth input and age calculation', 'Live results and input validation', 'Responsive, accessible calculator interface']
+  };
+  function setupCards() {
+    const cards = document.querySelectorAll('.modern-project-card');
+
+    cards.forEach(card => {
+      // 1. Wrap card contents into inner, front and back if not wrapped
+      if (!card.querySelector('.project-card-inner')) {
+        const frontContent = card.innerHTML;
+        const title = card.querySelector('h3')?.textContent?.trim() || 'Project Details';
+        const desc = card.querySelector('p')?.textContent?.trim() || '';
+        const pills = Array.from(card.querySelectorAll('.tech-pill')).map(p => p.outerHTML).join(' ');
+        const link = card.querySelector('.btn-project-link:not(.disabled-link), .overlay-btn:not(.overlay-btn-quickview)')?.href || '';
+
+        card.innerHTML = `
+          <div class="project-card-inner">
+            <div class="project-card-front">
+              ${frontContent}
+            </div>
+            <div class="project-card-back">
+              <div class="project-card-back-header">
+                <h4><i class="fas fa-layer-group" style="color:#38bdf8; margin-right:6px;"></i> ${title}</h4>
+                <button class="btn-flip-back" type="button" aria-label="Flip Back" title="Flip Back"><i class="fas fa-undo"></i></button>
+              </div>
+              <div class="project-card-back-body">
+                <p>${desc}</p>
+                <div style="margin: 0.85rem 0;">
+                  <strong style="font-size:0.8rem; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em;">Key Features:</strong>
+                  <ul class="project-back-features">
+                    ${(projectFeatures[title] || ['Project-specific features and implementation details']).map(feature => `<li><i class="fas fa-check-circle" aria-hidden="true"></i><span>${feature}</span></li>`).join('')}
+                  </ul>
+                </div>
+                <div style="display:flex; flex-wrap:wrap; gap:5px; margin-bottom:1rem;">
+                  ${pills}
+                </div>
+              </div>
+              <div style="display:flex; gap:0.5rem; justify-content:space-between; align-items:center;">
+                ${link ? `<a href="${link}" target="_blank" rel="noopener noreferrer" class="btn-filled hero-btn-main" style="padding:0.45rem 0.9rem; font-size:0.78rem;"><i class="fas fa-external-link-alt"></i> Live Demo</a>` : '<span style="font-size:0.75rem; color:#64748b;">Internal System</span>'}
+                <button class="btn-flip-back" type="button" aria-label="Flip Back" title="Flip Back"><i class="fas fa-sync-alt"></i></button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // 2. 3D Tilt on hover (when not flipped)
+      card.addEventListener('mousemove', function (e) {
+        if (card.classList.contains('is-flipped') || window.innerWidth < 768) return;
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = (((centerY - y) / centerY) * 11).toFixed(2);
+        const rotateY = (((x - centerX) / centerX) * 11).toFixed(2);
+
+        this.style.transform = `perspective(1100px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.025, 1.025, 1.025) translateY(-6px)`;
+      });
+
+      card.addEventListener('mouseleave', function () {
+        if (card.classList.contains('is-flipped')) return;
+        this.style.transform = 'perspective(1100px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translateY(0)';
+      });
+    });
+
+    // 3. Flip button trigger
+    document.addEventListener('click', function (e) {
+      const flipBtn = e.target.closest('.btn-flip-card');
+      if (flipBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        const card = flipBtn.closest('.modern-project-card');
+        if (card) {
+          card.classList.toggle('is-flipped');
+        }
+        return;
+      }
+
+      const backBtn = e.target.closest('.btn-flip-back');
+      if (backBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        const card = backBtn.closest('.modern-project-card');
+        if (card) {
+          card.classList.remove('is-flipped');
+          card.style.transform = 'perspective(1100px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translateY(0)';
+        }
+      }
     });
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupSkills);
+    document.addEventListener('DOMContentLoaded', setupCards);
   } else {
-    setupSkills();
+    setupCards();
   }
 })();
-
-
-
-
-
-
-
-
-
-
-
-
