@@ -1,3 +1,5 @@
+
+
 // Advanced Portfolio Animations
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -643,7 +645,7 @@ document.addEventListener('DOMContentLoaded', function () {
             card.style.transform = 'translateY(12px)';
             setTimeout(() => {
               card.style.opacity = '1';
-              card.style.transform = 'translateY(0)';
+              if (!card.classList.contains('modern-project-card')) card.style.transform = 'translateY(0)';
             }, 40);
           } else {
             card.classList.add('is-hidden');
@@ -690,13 +692,13 @@ document.addEventListener('DOMContentLoaded', function () {
           if (filter === 'all' || category === filter || category.split(/\s+/).includes(filter)) {
             card.style.display = 'flex';
             card.style.opacity = '0';
-            card.style.transform = 'translateY(24px)';
+            if (!card.classList.contains('modern-project-card')) card.style.transform = 'translateY(24px)';
             const delay = visibleIdx * 65;
             visibleIdx++;
             setTimeout(() => {
-              card.style.transition = 'opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
+              card.style.transition = 'opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
               card.style.opacity = '1';
-              card.style.transform = 'translateY(0)';
+              if (!card.classList.contains('modern-project-card')) card.style.transform = 'translateY(0)';
             }, delay + 20);
           } else {
             card.style.display = 'none';
@@ -800,7 +802,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (window.innerWidth < 768) return;
 
     const cards = document.querySelectorAll(
-      '.project-card, .modern-project-card, .certificate-card, .edu-card, .highlight-item, .contact-info-card'
+      '.certificate-card, .edu-card, .highlight-item, .contact-info-card'
     );
 
     cards.forEach(card => {
@@ -1041,27 +1043,17 @@ document.addEventListener('DOMContentLoaded', function () {
     [
       { html: '<span class="badge-dot badge-dot-green"></span> Open to Work' },
       { html: '<i class="fas fa-map-marker-alt badge-icon-loc"></i> Karachi, PK' },
-      { html: '<i class="fas fa-briefcase"></i> Available for Opportunities' }
+      { html: '<i class="fab fa-node-js badge-icon-mern"></i> MERN Stack' }
     ],
     [
-      { html: '<span class="badge-dot badge-dot-green"></span> Full-Stack Development' },
-      { html: '<i class="fab fa-react"></i> Frontend' },
-      { html: '<i class="fas fa-server"></i> Backend & APIs' }
-    ],
-    [
-      { html: '<span class="badge-dot badge-dot-green"></span> MERN Stack' },
-      { html: '<i class="fab fa-react"></i> React.js' },
-      { html: '<i class="fab fa-node-js badge-icon-mern"></i> Node.js' }
+      { html: '<span class="badge-dot badge-dot-green"></span> Available for UI/UX' },
+      { html: '<i class="fab fa-figma" style="color:#a855f7;"></i> Figma Pro' },
+      { html: '<i class="fas fa-layer-group" style="color:#38bdf8;"></i> Design Systems' }
     ],
     [
       { html: '<span class="badge-dot badge-dot-green"></span> Mobile Apps' },
       { html: '<i class="fab fa-react" style="color:#61dafb;"></i> React Native' },
       { html: '<i class="fab fa-android" style="color:#22c55e;"></i> Android &amp; iOS' }
-    ],
-    [
-      { html: '<span class="badge-dot badge-dot-green"></span> Available for UI/UX' },
-      { html: '<i class="fab fa-figma" style="color:#a855f7;"></i> Figma' },
-      { html: '<i class="fas fa-layer-group" style="color:#38bdf8;"></i> Design Systems' }
     ]
   ];
 
@@ -1215,112 +1207,64 @@ document.addEventListener('DOMContentLoaded', function () {
   }, { passive: true });
 })();
 
-// 3. 3D TILT & FLIP CARD CONTROLLER
-(function initTiltAndFlipCards() {
-  const projectFeatures = {
-    'CareerMap': ['Career assessment and personalized career recommendations', 'University and program search with filters', 'Mentor chat, marketplace and payment workflow'],
-    'Bookworm Mobile App': ['JWT authentication and personalized reading library', 'Cloudinary eBook uploads and in-app PDF reader', 'Page progress tracking, reviews and social feed'],
-    'E-Commerce App': ['React Native product browsing and catalog screens', 'Shopping cart and checkout user flows', 'Mobile-first navigation and responsive layouts'],
-    'Home Service App UI/UX': ['Service discovery and booking screen designs', 'Consistent visual identity, icons and typography', 'Mobile interface flows and reusable design elements'],
-    'Weather Prediction System': ['Weather classification with MLP, KNN and Decision Tree', 'Model comparison and prediction workflow', 'Weather forecasting for multiple cities'],
-    'Savor 3D Website': ['Responsive restaurant menu and landing experience', 'Interactive 3D visual elements', 'React, Vite and Tailwind CSS frontend'],
-    'Brewly & Co.': ['Coffee catalog, customization and filtering', 'Shopping cart, wishlist and subscription flow', 'Admin management and test-mode Stripe checkout'],
-    'Interactive Chatbot': ['Interactive conversational chat interface', 'Responsive message input and chat history display', 'User-focused chatbot interaction design'],
-    'Dynamic Age Calculator': ['Date-of-birth input and age calculation', 'Live results and input validation', 'Responsive, accessible calculator interface']
-  };
-  function setupCards() {
-    const cards = document.querySelectorAll('.modern-project-card');
-
-    cards.forEach(card => {
-      // 1. Wrap card contents into inner, front and back if not wrapped
-      if (!card.querySelector('.project-card-inner')) {
-        const frontContent = card.innerHTML;
-        const title = card.querySelector('h3')?.textContent?.trim() || 'Project Details';
-        const desc = card.querySelector('p')?.textContent?.trim() || '';
-        const pills = Array.from(card.querySelectorAll('.tech-pill')).map(p => p.outerHTML).join(' ');
-        const link = card.querySelector('.btn-project-link:not(.disabled-link), .overlay-btn:not(.overlay-btn-quickview)')?.href || '';
-
-        card.innerHTML = `
-          <div class="project-card-inner">
-            <div class="project-card-front">
-              ${frontContent}
-            </div>
-            <div class="project-card-back">
-              <div class="project-card-back-header">
-                <h4><i class="fas fa-layer-group" style="color:#38bdf8; margin-right:6px;"></i> ${title}</h4>
-                <button class="btn-flip-back" type="button" aria-label="Flip Back" title="Flip Back"><i class="fas fa-undo"></i></button>
-              </div>
-              <div class="project-card-back-body">
-                <p>${desc}</p>
-                <div style="margin: 0.85rem 0;">
-                  <strong style="font-size:0.8rem; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em;">Key Features:</strong>
-                  <ul class="project-back-features">
-                    ${(projectFeatures[title] || ['Project-specific features and implementation details']).map(feature => `<li><i class="fas fa-check-circle" aria-hidden="true"></i><span>${feature}</span></li>`).join('')}
-                  </ul>
-                </div>
-                <div style="display:flex; flex-wrap:wrap; gap:5px; margin-bottom:1rem;">
-                  ${pills}
-                </div>
-              </div>
-              <div style="display:flex; gap:0.5rem; justify-content:space-between; align-items:center;">
-                ${link ? `<a href="${link}" target="_blank" rel="noopener noreferrer" class="btn-filled hero-btn-main" style="padding:0.45rem 0.9rem; font-size:0.78rem;"><i class="fas fa-external-link-alt"></i> Live Demo</a>` : '<span style="font-size:0.75rem; color:#64748b;">Internal System</span>'}
-                <button class="btn-flip-back" type="button" aria-label="Flip Back" title="Flip Back"><i class="fas fa-sync-alt"></i></button>
-              </div>
-            </div>
-          </div>
-        `;
+// 3. SINGLE PROJECT CARD FLIP CONTROLLER
+(function initProjectFlip() {
+  function setup() {
+    document.querySelectorAll('.projects-grid .modern-project-card').forEach(card => {
+      if (card.dataset.flipReady === 'true') return;
+      card.dataset.flipReady = 'true';
+      const body = card.querySelector('.project-card-body');
+      const footer = card.querySelector('.project-card-footer');
+      if (!body || !footer) return;
+      const title = body.querySelector('h3');
+      const desc = body.querySelector('p');
+      const pills = body.querySelector('.tech-pills');
+      const link = footer.querySelector('a[href]');
+      const front = document.createElement('div');
+      front.className = 'project-card-front';
+      while (card.firstChild) front.appendChild(card.firstChild);
+      const back = document.createElement('div');
+      back.className = 'project-card-back';
+      const heading = document.createElement('div');
+      heading.className = 'project-card-back-header';
+      const headingTitle = document.createElement('h4');
+      headingTitle.textContent = title ? title.textContent : 'Project Details';
+      heading.appendChild(headingTitle);
+      const backBtn = document.createElement('button');
+      backBtn.type = 'button'; backBtn.className = 'btn-flip-back';
+      backBtn.setAttribute('aria-label', 'Flip back to project preview');
+      backBtn.innerHTML = '<i class="fas fa-undo" aria-hidden="true"></i>';
+      heading.appendChild(backBtn);
+      back.appendChild(heading);
+      const scroll = document.createElement('div');
+      scroll.className = 'project-card-back-body';
+      if (desc) scroll.appendChild(desc.cloneNode(true));
+      if (pills) scroll.appendChild(pills.cloneNode(true));
+      back.appendChild(scroll);
+      const actions = document.createElement('div');
+      actions.className = 'project-back-actions';
+      if (link) actions.appendChild(link.cloneNode(true));
+      back.appendChild(actions);
+      const flipBtn = document.createElement('button');
+      flipBtn.type = 'button'; flipBtn.className = 'btn-flip-card';
+      flipBtn.setAttribute('aria-label', 'Flip to project details');
+      flipBtn.innerHTML = '<i class="fas fa-sync-alt" aria-hidden="true"></i>';
+      footer.appendChild(flipBtn);
+      const inner = document.createElement('div');
+      inner.className = 'project-card-inner';
+      inner.appendChild(front); inner.appendChild(back); card.appendChild(inner);
+      function flip(value) {
+        card.classList.toggle('is-flipped', value);
+        flipBtn.setAttribute('aria-expanded', String(value));
+        front.inert = value;
+        back.inert = !value;
+        back.setAttribute('aria-hidden', String(!value));
       }
-
-      // 2. 3D Tilt on hover (when not flipped)
-      card.addEventListener('mousemove', function (e) {
-        if (card.classList.contains('is-flipped') || window.innerWidth < 768) return;
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const rotateX = (((centerY - y) / centerY) * 11).toFixed(2);
-        const rotateY = (((x - centerX) / centerX) * 11).toFixed(2);
-
-        this.style.transform = `perspective(1100px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.025, 1.025, 1.025) translateY(-6px)`;
-      });
-
-      card.addEventListener('mouseleave', function () {
-        if (card.classList.contains('is-flipped')) return;
-        this.style.transform = 'perspective(1100px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translateY(0)';
-      });
-    });
-
-    // 3. Flip button trigger
-    document.addEventListener('click', function (e) {
-      const flipBtn = e.target.closest('.btn-flip-card');
-      if (flipBtn) {
-        e.preventDefault();
-        e.stopPropagation();
-        const card = flipBtn.closest('.modern-project-card');
-        if (card) {
-          card.classList.toggle('is-flipped');
-        }
-        return;
-      }
-
-      const backBtn = e.target.closest('.btn-flip-back');
-      if (backBtn) {
-        e.preventDefault();
-        e.stopPropagation();
-        const card = backBtn.closest('.modern-project-card');
-        if (card) {
-          card.classList.remove('is-flipped');
-          card.style.transform = 'perspective(1100px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translateY(0)';
-        }
-      }
+      flipBtn.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); flip(true); });
+      backBtn.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); flip(false); });
+      flip(false);
     });
   }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupCards);
-  } else {
-    setupCards();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
+  else setup();
 })();

@@ -9570,3 +9570,213 @@ body.theme-dark .projects-grid .modern-project-card .project-card-back { backgro
 .projects-grid .modern-project-card .project-card-back-body ~ div:last-child { flex: 0 0 auto; }
 .projects-grid .modern-project-card .project-back-features li { align-items: flex-start; }
 .projects-grid .modern-project-card .project-back-features li i { margin-top: 4px; flex-shrink: 0; }
+
+
+/* Compact slider controls - Desktop & Mobile */
+.hero-slider-controls {
+  justify-content: center !important;
+  width: 100%;
+  gap: 0 !important;
+  margin: 0 auto 1.25rem !important;
+}
+
+.hero-slider-pagination {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 9px !important;
+  width: 100%;
+}
+
+.hero-slider-dot {
+  width: 9px !important;
+  height: 9px !important;
+  min-width: 9px;
+  border-radius: 999px !important;
+  background: #485469 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  flex: 0 0 auto;
+}
+
+.hero-slider-dot.active {
+  width: 29px !important;
+  background: linear-gradient(90deg, #38bdf8, #818cf8) !important;
+  box-shadow: 0 0 10px rgba(56, 189, 248, .24) !important;
+}
+
+.hero-slider-dot:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 4px;
+}
+
+/* Remove extra arrows and progress bar */
+.hero-slider-arrows,
+.hero-slider-timer-bar {
+  display: none !important;
+}
+
+/* Keep one flip-back button in the card header */
+.projects-grid .modern-project-card
+.project-card-back-header .btn-flip-back {
+  flex: 0 0 auto;
+}
+
+/* Mobile responsive fixes */
+@media (max-width: 768px) {
+  .hero-slides-wrapper {
+    min-height: 0 !important;
+    margin-bottom: .75rem !important;
+  }
+
+  .hero-slide.active {
+    position: relative;
+  }
+
+  .hero-role {
+    margin-bottom: .45rem !important;
+  }
+
+  .hero-specialization {
+    margin-bottom: .5rem !important;
+    justify-content: center;
+  }
+
+  .hero-desc {
+    font-size: .9rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: .8rem !important;
+  }
+
+  .hero-buttons {
+    gap: .65rem !important;
+    margin-bottom: .85rem !important;
+  }
+
+  .hero-buttons .hero-btn-main,
+  .hero-buttons .hero-btn-talk {
+    padding: 11px 16px !important;
+    font-size: .9rem !important;
+  }
+
+  .hero-slider-controls {
+    margin-bottom: 1rem !important;
+  }
+
+  .hero-stats {
+    margin: 0 auto 1rem !important;
+    padding: .65rem .75rem !important;
+    gap: .5rem !important;
+    max-width: 100%;
+  }
+
+  .hero-stat-number {
+    font-size: 1.15rem !important;
+  }
+
+  .hero-stat-label {
+    font-size: .57rem !important;
+    letter-spacing: .02em !important;
+  }
+
+  .hero-stat-item {
+    min-width: 0;
+    flex: 1;
+  }
+
+  #back-to-top,
+  .back-to-top,
+  .back-to-top-btn {
+    right: 12px !important;
+    bottom: 12px !important;
+    width: 42px !important;
+    height: 42px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-desc {
+    font-size: .85rem !important;
+  }
+
+  .hero-stats {
+    padding-right: 1.15rem !important;
+    padding-left: .65rem !important;
+  }
+}
+
+
+/* Fix slider indicators on desktop and mobile */
+.hero-slider-pagination {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 9px !important;
+}
+
+.hero-slider-dot {
+  width: 9px !important;
+  height: 9px !important;
+  min-width: 9px !important;
+  min-height: 9px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  flex: 0 0 9px !important;
+  background: #475569 !important;
+  box-shadow: none !important;
+}
+
+.hero-slider-dot.active {
+  width: 30px !important;
+  min-width: 30px !important;
+  flex: 0 0 30px !important;
+  height: 9px !important;
+  min-height: 9px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(90deg, #38bdf8, #818cf8) !important;
+}
+
+
+
+/* FINAL: genuine 3D project flip, scoped to project grid only */
+.projects-grid .modern-project-card { perspective: 1200px !important; transform-style: flat !important; }
+.projects-grid .modern-project-card .project-card-inner,
+.projects-grid .modern-project-card.is-flipped .project-card-inner {
+  position: relative !important; width: 100% !important; height: 100% !important;
+  transform-style: preserve-3d !important;
+  transform: rotateY(0deg) !important;
+  transition: transform .7s cubic-bezier(.2,.8,.2,1) !important;
+}
+.projects-grid .modern-project-card.is-flipped .project-card-inner { transform: rotateY(180deg) !important; }
+.projects-grid .modern-project-card .project-card-inner > .project-card-front,
+.projects-grid .modern-project-card .project-card-inner > .project-card-back,
+.projects-grid .modern-project-card.is-flipped .project-card-inner > .project-card-front,
+.projects-grid .modern-project-card.is-flipped .project-card-inner > .project-card-back {
+  position: absolute !important; inset: 0 !important;
+  opacity: 1 !important; visibility: visible !important;
+  backface-visibility: hidden !important; -webkit-backface-visibility: hidden !important;
+  transition: none !important; overflow: hidden !important;
+}
+.projects-grid .modern-project-card .project-card-inner > .project-card-front,
+.projects-grid .modern-project-card.is-flipped .project-card-inner > .project-card-front { transform: rotateY(0deg) !important; }
+.projects-grid .modern-project-card .project-card-inner > .project-card-back,
+.projects-grid .modern-project-card.is-flipped .project-card-inner > .project-card-back { transform: rotateY(180deg) !important; }
+.projects-grid .modern-project-card .project-card-inner > .project-card-back {
+  display: flex !important; flex-direction: column !important; background: #101827 !important;
+}
+.projects-grid .modern-project-card .project-card-back-body {
+  flex: 1 1 auto !important; min-height: 0 !important; overflow-y: auto !important;
+}
+.projects-grid .modern-project-card .project-card-front { pointer-events: auto !important; }
+.projects-grid .modern-project-card.is-flipped .project-card-front { pointer-events: none !important; }
+.projects-grid .modern-project-card .project-card-back { pointer-events: none !important; }
+.projects-grid .modern-project-card.is-flipped .project-card-back { pointer-events: auto !important; }
+.projects-grid .modern-project-card .project-card-back-header h4 { color: #f8fafc; margin: 0; }
+.projects-grid .modern-project-card .project-card-back-body p { color: #cbd5e1; }
+
+
+/* Hide old duplicate flip icon only */
+.project-card-footer .btn-flip-card[aria-label="Flip Info"] {
+    display: none !important;
+}
